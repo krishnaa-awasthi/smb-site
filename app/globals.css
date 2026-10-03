@@ -1,0 +1,252 @@
+@import "tailwindcss";
+
+/* Design tokens: docs/design.md §14 plus the palette values used in the client-approved HTML
+   (see docs/design-addendum.md). Do not use Tailwind default palette colours. */
+:root {
+  --cream: #fefadb;
+  --ivory: #fffdf0;
+  --parchment: #f6e9c0;
+  --ray: #fdf6b8;
+  --crimson: #b3202a;
+  --crimson-deep: #8f1721;
+  --maroon: #5a1420;
+  --saffron: #e8841c;
+  --gold: #c49a5e;
+  --gold-light: #e3c48a;
+  --ink: #2b1712;
+  --ink-soft: #6a4b40;
+  --leaf: #1f7a4d;
+  --egg: #9a5b1e;
+  --error: #a3261f;
+
+  /* From the approved HTML */
+  --primary: #8f0017;
+  --surface-low: #f9f5d6;
+  --surface-mid: #f3efd0;
+  --surface-high: #ede9cb;
+  --ink-variant: #5a403f;
+   --secondary: #98434d;
+  --surface-lowest: #ffffff;
+
+  --dur-fast: 160ms;
+  --dur-base: 280ms;
+  --dur-slow: 900ms;
+  --container: 1320px;
+}
+
+/* Static theme values: always emitted, and they generate ease-brand / shadow-sheet utilities. */
+@theme static {
+  --ease-brand: cubic-bezier(0.22, 0.7, 0.2, 1);
+  --shadow-sheet:
+    0 0 0 1px rgba(90, 20, 32, 0.06), 0 24px 48px -24px rgba(90, 20, 32, 0.28);
+}
+
+@theme inline {
+  --color-cream: var(--cream);
+  --color-ivory: var(--ivory);
+  --color-parchment: var(--parchment);
+  --color-ray: var(--ray);
+  --color-crimson: var(--crimson);
+  --color-crimson-deep: var(--crimson-deep);
+  --color-maroon: var(--maroon);
+  --color-saffron: var(--saffron);
+  --color-gold: var(--gold);
+  --color-gold-light: var(--gold-light);
+  --color-ink: var(--ink);
+  --color-ink-soft: var(--ink-soft);
+  --color-leaf: var(--leaf);
+  --color-egg: var(--egg);
+  --color-error: var(--error);
+  --color-primary: var(--primary);
+  --color-surface-low: var(--surface-low);
+  --color-surface-mid: var(--surface-mid);
+  --color-surface-high: var(--surface-high);
+  --color-ink-variant: var(--ink-variant);
+    --color-secondary: var(--secondary);
+  --color-surface-lowest: var(--surface-lowest);
+
+  --font-display: var(--font-marcellus), Georgia, serif;
+  --font-body: var(--font-hind), system-ui, sans-serif;
+  --font-script: var(--font-pinyon), cursive;
+
+  --text-hero: clamp(2.25rem, 1.4rem + 3.4vw, 3.9rem);
+  --text-hero--line-height: 1.08;
+  --text-hero--letter-spacing: -0.01em;
+  --text-h2: clamp(1.75rem, 1.2rem + 2vw, 2.75rem);
+  --text-h2--line-height: 1.15;
+  --text-h2--letter-spacing: -0.005em;
+  --text-h3: clamp(1.25rem, 1.1rem + 0.8vw, 1.6rem);
+  --text-h3--line-height: 1.25;
+  --text-product: 1.0625rem;
+  --text-product--line-height: 1.3;
+  --text-body: 1.0625rem;
+  --text-body--line-height: 1.65;
+  --text-small: 0.875rem;
+  --text-small--line-height: 1.5;
+  --text-small--letter-spacing: 0.005em;
+  --text-price: 1.0625rem;
+  --text-price--line-height: 1;
+  --text-button: 0.9375rem;
+  --text-button--line-height: 1;
+  --text-button--letter-spacing: 0.01em;
+
+  --radius-ctl: 2px;
+  --radius-soft: 0.5rem;
+}
+
+html {
+  background: var(--cream);
+  color: var(--ink);
+  font-family: var(--font-body);
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  font-size: 1.0625rem;
+  line-height: 1.65;
+  min-height: 100dvh;
+}
+
+h1,
+h2,
+h3 {
+  font-family: var(--font-display);
+  font-weight: 400;
+}
+
+::selection {
+  background: var(--gold-light);
+  color: var(--ink);
+}
+
+:focus-visible {
+  outline: 2px solid var(--crimson);
+  outline-offset: 2px;
+}
+
+img {
+  max-width: 100%;
+}
+
+/* Sunburst: 24 ray pairs from the logo. Rotate with GSAP; edges fade via mask. */
+.sunburst {
+  background: repeating-conic-gradient(
+    from 0deg at 50% 50%,
+    var(--ray) 0 7.5deg,
+    var(--cream) 7.5deg 15deg
+  );
+  -webkit-mask-image: radial-gradient(
+    circle at 50% 50%,
+    #000 0,
+    #000 35%,
+    transparent 72%
+  );
+  mask-image: radial-gradient(
+    circle at 50% 50%,
+    #000 0,
+    #000 35%,
+    transparent 72%
+  );
+}
+
+/* Sheets (drawers and bottom sheets) built on the native <dialog> */
+.sheet {
+  padding: 0;
+  border: 0;
+  background: var(--ivory);
+  color: var(--ink);
+  max-width: none;
+  max-height: none;
+  overflow: hidden;
+  box-shadow: var(--shadow-sheet);
+  margin: 0;
+}
+.sheet::backdrop {
+  background: rgba(43, 23, 18, 0.45);
+}
+.sheet[open]::backdrop {
+  animation: sheet-fade var(--dur-base) var(--ease-brand);
+}
+.sheet[data-closing]::backdrop {
+  opacity: 0;
+  transition: opacity 200ms var(--ease-brand);
+}
+.sheet[open] {
+  animation: sheet-in var(--dur-base) var(--ease-brand);
+}
+.sheet[data-closing] {
+  animation: sheet-out 200ms var(--ease-brand) forwards;
+}
+.sheet-right {
+  --sheet-from: translateX(100%);
+  inset: 0 0 0 auto;
+  height: 100dvh;
+  width: min(420px, 100%);
+}
+.sheet-left {
+  --sheet-from: translateX(-100%);
+  inset: 0 auto 0 0;
+  height: 100dvh;
+  width: min(86vw, 380px);
+}
+.sheet-bottom {
+  --sheet-from: translateY(100%);
+  inset: auto 0 0 0;
+  width: 100%;
+  max-height: 85dvh;
+}
+.sheet-top {
+  --sheet-from: translateY(-100%);
+  inset: 0 0 auto 0;
+  width: 100%;
+  max-height: 85dvh;
+}
+
+@keyframes sheet-in {
+  from {
+    transform: var(--sheet-from);
+  }
+  to {
+    transform: none;
+  }
+}
+@keyframes sheet-out {
+  from {
+    transform: none;
+  }
+  to {
+    transform: var(--sheet-from);
+  }
+}
+@keyframes sheet-fade {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+@keyframes toast-in {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+.toast-in {
+  animation: toast-in var(--dur-base) var(--ease-brand);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}

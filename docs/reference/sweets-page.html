@@ -1,0 +1,1337 @@
+<!doctype html>
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <meta content="web_standard" name="shell-type" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Marcellus&amp;family=Hind:wght@400;500;600;700&amp;display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      @layer base {
+        html,
+        body {
+          margin: 0;
+          padding: 0;
+        }
+        body {
+          overscroll-behavior: none;
+        }
+        main > :first-child {
+          margin-top: 0 !important;
+        }
+        main > :last-child {
+          margin-bottom: 0 !important;
+        }
+      }
+      ::-webkit-scrollbar {
+        display: none;
+      }
+    </style>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              "tertiary-fixed-dim": "#edbf7f",
+              "on-secondary-fixed": "#40010e",
+              "on-surface": "#1d1c0a",
+              "on-background": "#1d1c0a",
+              ivory: "#FFFDF0",
+              tertiary: "#5d3f0a",
+              egg: "#9A5B1E",
+              "surface-variant": "#e7e4c5",
+              "inverse-on-surface": "#f6f2d3",
+              ray: "#FDF6B8",
+              "on-error": "#ffffff",
+              surface: "#fefadb",
+              "outline-variant": "#e2bebc",
+              "on-secondary-fixed-variant": "#7a2c37",
+              "surface-container-low": "#f9f5d6",
+              "on-tertiary": "#ffffff",
+              "surface-dim": "#dfdbbd",
+              secondary: "#98434d",
+              "primary-container": "#b3202a",
+              "secondary-fixed-dim": "#ffb2b8",
+              "primary-fixed-dim": "#ffb3af",
+              "surface-container-lowest": "#ffffff",
+              error: "#A3261F",
+              "primary-fixed": "#ffdad7",
+              "on-tertiary-fixed-variant": "#60410c",
+              "on-error-container": "#93000a",
+              primary: "#8f0017",
+              "on-primary-container": "#ffc8c5",
+              "soft-ink": "#6A4B40",
+              "inverse-primary": "#ffb3af",
+              "on-primary": "#ffffff",
+              saffron: "#E8841C",
+              crimson: "#B3202A",
+              "on-secondary": "#ffffff",
+              "inverse-surface": "#32311d",
+              "secondary-fixed": "#ffdadb",
+              "crimson-deep": "#8F1721",
+              outline: "#8e706e",
+              "on-tertiary-container": "#fdce8d",
+              "surface-bright": "#fefadb",
+              "on-tertiary-fixed": "#291800",
+              "antique-gold": "#C49A5E",
+              "surface-tint": "#b6222c",
+              "on-primary-fixed-variant": "#930018",
+              "kajal-ink": "#2B1712",
+              "surface-container-high": "#ede9cb",
+              malai: "#FEFADB",
+              parchment: "#F6E9C0",
+              "tertiary-container": "#785621",
+              maroon: "#5A1420",
+              background: "#fefadb",
+              "on-secondary-container": "#782b35",
+              "on-surface-variant": "#5a403f",
+              "secondary-container": "#fe959f",
+              "surface-container": "#f3efd0",
+              "error-container": "#ffdad6",
+              "tertiary-fixed": "#ffddb2",
+              leaf: "#1F7A4D",
+              "light-gold": "#E3C48A",
+              "surface-container-highest": "#e7e4c5",
+              "on-primary-fixed": "#410005",
+            },
+            borderRadius: {
+              DEFAULT: "0.125rem",
+              lg: "0.25rem",
+              xl: "0.5rem",
+              full: "0.75rem",
+            },
+            spacing: {
+              "space-xs": "0.25rem",
+              "space-xl": "2.5rem",
+              "space-lg": "1.5rem",
+              gutter: "1.5rem",
+              margin: "2rem",
+              "space-sm": "0.5rem",
+              "space-md": "1rem",
+            },
+            fontFamily: {
+              "headline-lg": ["Marcellus"],
+              price: ["Hind"],
+              body: ["Hind"],
+              "product-name": ["Marcellus"],
+              button: ["Hind"],
+              "headline-hero": ["Marcellus"],
+              "headline-md": ["Marcellus"],
+              caption: ["Hind"],
+            },
+            fontSize: {
+              "headline-lg": [
+                "clamp(1.75rem, 1.2rem + 2vw, 2.75rem)",
+                {
+                  lineHeight: "1.15",
+                  letterSpacing: "-0.005em",
+                  fontWeight: "400",
+                },
+              ],
+              price: [
+                "1.0625rem",
+                { lineHeight: "1", letterSpacing: "0", fontWeight: "600" },
+              ],
+              body: [
+                "1.0625rem",
+                { lineHeight: "1.65", letterSpacing: "0", fontWeight: "400" },
+              ],
+              "product-name": [
+                "1.0625rem",
+                { lineHeight: "1.3", letterSpacing: "0", fontWeight: "400" },
+              ],
+              button: [
+                "0.9375rem",
+                { lineHeight: "1", letterSpacing: "0.01em", fontWeight: "600" },
+              ],
+              "headline-hero": [
+                "clamp(2.25rem, 1.4rem + 3.4vw, 3.9rem)",
+                {
+                  lineHeight: "1.08",
+                  letterSpacing: "-0.01em",
+                  fontWeight: "400",
+                },
+              ],
+              "headline-md": [
+                "clamp(1.25rem, 1.1rem + 0.8vw, 1.6rem)",
+                { lineHeight: "1.25", letterSpacing: "0", fontWeight: "400" },
+              ],
+              caption: [
+                "0.875rem",
+                {
+                  lineHeight: "1.5",
+                  letterSpacing: "0.005em",
+                  fontWeight: "400",
+                },
+              ],
+            },
+          },
+        },
+      };
+    </script>
+  </head>
+  <body class="bg-surface font-body text-on-surface">
+    <header
+      class="fixed top-0 w-full z-50 bg-surface/90 backdrop-blur-xl shadow-[0_1px_8px_rgba(0,0,0,0.04)]"
+    >
+      <div
+        class="max-w-[1320px] mx-auto px-[20px] lg:px-[48px] h-20 flex items-center justify-between"
+      >
+        <div class="flex items-center gap-space-md">
+          <a class="flex items-center gap-space-sm" data-path="home" href="#">
+            <img
+              alt="logo.png"
+              class="h-8 w-auto object-contain"
+              src="https://lh3.googleusercontent.com/aida/AEtjO1W5Bln27qMxatJ2wSdfY_sqrX5t4DnOIFIaqTxdWPImVIHmreJGJ4g0KwR_rbsw3CwdmlbQKRfw-_EARFqDykT-CS9VKk2vlwFFV2Q0Sz3I8evQWkVskx_kDMthnKV97-9-JbzVunh6eE6dtn1-y4mGpkjOSoz2s8NE5U7sA8pleTNjjPCT4PZzzhtp71UatK0ajNkUyoBpIIMH3V28Krf27Od_ajy6oAARM6TJUnvJ9f_HHIafQF-YPt9dR-hcgJrGPvzlC0du"
+            />
+            <span class="font-headline-md text-primary tracking-wide"
+              >Shiv Mishthan Bhandar</span
+            >
+          </a>
+        </div>
+        <nav
+          class="hidden lg:flex items-center gap-space-lg"
+          data-active-classes="text-primary font-bold"
+        >
+          <a
+            aria-current="page"
+            class="transition-colors text-primary font-bold"
+            data-path="sweets"
+            href="#"
+            >Sweets</a
+          >
+          <a
+            class="text-on-surface-variant hover:text-primary transition-colors text-button"
+            data-path="restaurant"
+            href="#"
+            >Restaurant</a
+          >
+          <a
+            class="text-on-surface-variant hover:text-primary transition-colors text-button"
+            data-path="bakery"
+            href="#"
+            >Bakery</a
+          >
+          <a
+            class="text-on-surface-variant hover:text-primary transition-colors text-button"
+            data-path="namkeen"
+            href="#"
+            >Namkeen</a
+          >
+          <a
+            class="text-on-surface-variant hover:text-primary transition-colors text-button"
+            data-path="about"
+            href="#"
+            >About</a
+          >
+          <a
+            class="text-on-surface-variant hover:text-primary transition-colors text-button"
+            data-path="contact"
+            href="#"
+            >Contact</a
+          >
+        </nav>
+        <div class="flex items-center gap-space-md">
+          <a
+            class="hidden md:flex items-center gap-space-xs text-on-surface-variant hover:text-primary"
+            href="tel:+919876543210"
+          >
+            <span class="material-symbols-outlined text-[20px]">call</span>
+            <span class="text-caption">+91 98765 43210</span>
+          </a>
+          <button
+            aria-label="Search"
+            class="p-space-xs text-on-surface-variant hover:text-primary"
+          >
+            <span class="material-symbols-outlined text-[22px]">search</span>
+          </button>
+          <button
+            aria-label="Cart"
+            class="relative p-space-xs text-on-surface-variant hover:text-primary"
+          >
+            <span class="material-symbols-outlined text-[22px]"
+              >shopping_bag</span
+            >
+            <span
+              class="absolute top-0 right-0 bg-primary text-on-primary text-[10px] font-bold w-4 h-4 rounded-full flex items-center justify-center"
+              >3</span
+            >
+          </button>
+          <div
+            class="w-8 h-8 rounded-full bg-primary flex items-center justify-center"
+          >
+            <span class="material-symbols-outlined text-on-primary text-[18px]"
+              >person</span
+            >
+          </div>
+        </div>
+      </div>
+    </header>
+    <main class="w-full pt-20 bg-surface">
+      <div class="flex flex-col w-full">
+        <!-- Header Band -->
+        <section
+          class="relative w-full bg-surface-container-low pt-space-xl pb-space-lg overflow-hidden"
+        >
+          <div
+            class="absolute right-0 top-0 w-1/3 h-full pointer-events-none opacity-20"
+          >
+            <div
+              class="w-full h-full bg-cover bg-center"
+              data-alt="Subtle decorative traditional Indian mandala sunburst pattern in antique gold and saffron tones, perfectly framing an arched alcove with soft lighting."
+              style="
+                background-image: url(&quot;https://lh3.googleusercontent.com/aida-public/AB6AXuAkvD83joDo2qvWlhH_ovkR9p2pYJKAuwAZWvnoyL1Ng5NdihL2RHo3J8Z9EqpztkdskaYcuU3_Ut-rxyL0Rlb91Y9HOl6SA9QSWdHQ5fW5UBwBNTJVWCxegUWNAcPCD_LvpoZoRNfpBVjiEq8KaZmZ9yrFwJF8DHFmRbcbPgYVKuhvPAh93NdZe2zM3wOHqtmfrJUwae-9E8ESsJcnxw87FMFb-nWB-KRz7N-idHcynOnvQrhgHIkE&quot;);
+              "
+            ></div>
+          </div>
+          <div
+            class="max-w-[1320px] mx-auto px-[20px] lg:px-[48px] relative z-10"
+          >
+            <div
+              class="flex flex-col md:flex-row md:items-end justify-between gap-space-md"
+            >
+              <div>
+                <div
+                  class="flex items-center gap-space-xs text-caption text-primary uppercase tracking-wider mb-space-xs"
+                >
+                  <span>Shiv Mishthan Bhandar</span>
+                  <span>/</span>
+                  <span>Collection</span>
+                </div>
+                <h1 class="font-headline-hero text-primary">Sweets</h1>
+                <p
+                  class="font-body text-body text-on-surface-variant max-w-xl mt-space-xs"
+                >
+                  Mithai made fresh every morning, crafted with pure desi ghee,
+                  organic khoya, and decades of heritage devotion.
+                </p>
+              </div>
+              <div
+                class="flex items-center gap-space-sm text-caption text-on-surface-variant"
+              >
+                <span class="w-2 h-2 rounded-full bg-leaf"></span>
+                <span>100% Pure Desi Ghee Preparation</span>
+              </div>
+            </div>
+          </div>
+        </section>
+        <!-- Main Content & Filters Area -->
+        <section
+          class="max-w-[1320px] mx-auto px-[20px] lg:px-[48px] py-space-xl w-full"
+        >
+          <!-- Controls Bar: Result Count & Sort -->
+          <div
+            class="flex items-center justify-between pb-space-lg mb-space-lg"
+          >
+            <span class="font-body text-body text-on-surface-variant"
+              >Showing
+              <strong class="text-on-surface font-semibold">12</strong> of
+              <strong class="text-on-surface font-semibold">38</strong>
+              items</span
+            >
+            <div class="flex items-center gap-space-sm">
+              <span
+                class="font-caption text-on-surface-variant hidden sm:inline"
+                >Sort by:</span
+              >
+              <div class="relative inline-block">
+                <select
+                  class="bg-ivory text-on-surface font-button px-space-md py-space-xs rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-primary cursor-pointer appearance-none pr-8"
+                >
+                  <option>Popularity</option>
+                  <option>Price: Low to High</option>
+                  <option>Price: High to Low</option>
+                  <option>Freshly Added</option>
+                </select>
+                <span
+                  class="material-symbols-outlined absolute right-2 top-1/2 -translate-y-1/2 text-on-surface-variant pointer-events-none text-[18px]"
+                  >expand_more</span
+                >
+              </div>
+            </div>
+          </div>
+          <div class="flex flex-col lg:flex-row gap-space-xl items-start">
+            <!-- Left Filter Panel (Sticky 248px) -->
+            <aside
+              class="w-full lg:w-[248px] lg:sticky lg:top-28 flex flex-col gap-space-lg bg-surface-container-low p-space-lg rounded-xl shadow-sm"
+            >
+              <div class="flex items-center justify-between">
+                <span class="font-headline-md text-primary">Filters</span>
+                <button class="text-caption text-secondary hover:underline">
+                  Reset all
+                </button>
+              </div>
+              <!-- Type Subcategories -->
+              <div class="flex flex-col gap-space-sm">
+                <span
+                  class="text-button text-on-surface uppercase tracking-wider text-[12px]"
+                  >Category</span
+                >
+                <div class="flex flex-col gap-space-xs">
+                  <label
+                    class="flex items-center gap-space-sm cursor-pointer py-1"
+                  >
+                    <input
+                      checked=""
+                      class="accent-primary w-4 h-4 rounded"
+                      type="checkbox"
+                    />
+                    <span class="font-body text-body text-on-surface"
+                      >All Sweets (38)</span
+                    >
+                  </label>
+                  <label
+                    class="flex items-center gap-space-sm cursor-pointer py-1"
+                  >
+                    <input
+                      class="accent-primary w-4 h-4 rounded"
+                      type="checkbox"
+                    />
+                    <span class="font-body text-body text-on-surface-variant"
+                      >Ghee Mithai (14)</span
+                    >
+                  </label>
+                  <label
+                    class="flex items-center gap-space-sm cursor-pointer py-1"
+                  >
+                    <input
+                      class="accent-primary w-4 h-4 rounded"
+                      type="checkbox"
+                    />
+                    <span class="font-body text-body text-on-surface-variant"
+                      >Khoya Specials (10)</span
+                    >
+                  </label>
+                  <label
+                    class="flex items-center gap-space-sm cursor-pointer py-1"
+                  >
+                    <input
+                      class="accent-primary w-4 h-4 rounded"
+                      type="checkbox"
+                    />
+                    <span class="font-body text-body text-on-surface-variant"
+                      >Dry Fruit Sweets (8)</span
+                    >
+                  </label>
+                  <label
+                    class="flex items-center gap-space-sm cursor-pointer py-1"
+                  >
+                    <input
+                      class="accent-primary w-4 h-4 rounded"
+                      type="checkbox"
+                    />
+                    <span class="font-body text-body text-on-surface-variant"
+                      >Bengali Ras Delights (6)</span
+                    >
+                  </label>
+                </div>
+              </div>
+              <!-- Price Chips -->
+              <div class="flex flex-col gap-space-sm">
+                <span
+                  class="text-button text-on-surface uppercase tracking-wider text-[12px]"
+                  >Price Range</span
+                >
+                <div class="flex flex-wrap gap-space-xs">
+                  <button
+                    class="px-space-sm py-1 bg-ivory text-on-surface-variant font-caption rounded-full hover:bg-primary hover:text-on-primary transition-colors"
+                  >
+                    Under ₹300
+                  </button>
+                  <button
+                    class="px-space-sm py-1 bg-primary text-on-primary font-caption rounded-full"
+                  >
+                    ₹300 - ₹600
+                  </button>
+                  <button
+                    class="px-space-sm py-1 bg-ivory text-on-surface-variant font-caption rounded-full hover:bg-primary hover:text-on-primary transition-colors"
+                  >
+                    ₹600+
+                  </button>
+                </div>
+              </div>
+              <!-- Diet (Veg / Eggless) -->
+              <div class="flex flex-col gap-space-sm">
+                <span
+                  class="text-button text-on-surface uppercase tracking-wider text-[12px]"
+                  >Dietary Preference</span
+                >
+                <div class="flex flex-col gap-space-xs">
+                  <label
+                    class="flex items-center gap-space-sm cursor-pointer py-1"
+                  >
+                    <input
+                      checked=""
+                      class="accent-leaf w-4 h-4 rounded"
+                      type="checkbox"
+                    />
+                    <span
+                      class="flex items-center gap-space-xs font-body text-body text-on-surface"
+                    >
+                      <span
+                        class="w-3 h-3 bg-leaf rounded-sm inline-block"
+                      ></span>
+                      Pure Vegetarian
+                    </span>
+                  </label>
+                  <label
+                    class="flex items-center gap-space-sm cursor-pointer py-1"
+                  >
+                    <input
+                      checked=""
+                      class="accent-primary w-4 h-4 rounded"
+                      type="checkbox"
+                    />
+                    <span
+                      class="flex items-center gap-space-xs font-body text-body text-on-surface"
+                    >
+                      <span
+                        class="w-3 h-3 bg-egg rounded-sm inline-block"
+                      ></span>
+                      Eggless Bakery Note
+                    </span>
+                  </label>
+                </div>
+              </div>
+              <!-- Availability Toggle -->
+              <div class="flex items-center justify-between pt-space-xs">
+                <span class="font-body text-body text-on-surface"
+                  >In Stock Only</span
+                >
+                <label class="relative inline-flex items-center cursor-pointer">
+                  <input
+                    checked=""
+                    class="sr-only peer"
+                    type="checkbox"
+                    value=""
+                  />
+                  <div
+                    class="w-9 h-5 bg-surface-dim peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-4 after:w-4 after:transition-all peer-checked:bg-primary"
+                  ></div>
+                </label>
+              </div>
+            </aside>
+            <!-- Product Grid (4 columns) -->
+            <div
+              class="flex-1 grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 gap-x-space-md gap-y-space-xl"
+            >
+              <!-- Product 1: Kaju Katli -->
+              <div class="flex flex-col group">
+                <div
+                  class="relative w-full aspect-[4/5] rounded-t-xl overflow-hidden bg-surface-container"
+                >
+                  <div class="absolute top-2 left-2 z-10 flex gap-space-xs">
+                    <span
+                      class="px-space-xs py-0.5 bg-primary text-on-primary text-[10px] font-bold uppercase tracking-wider rounded"
+                      >Bestseller</span
+                    >
+                  </div>
+                  <div class="absolute top-2 right-2 z-10">
+                    <span
+                      class="w-3.5 h-3.5 bg-leaf rounded-sm inline-block shadow-sm"
+                      title="Pure Vegetarian"
+                    ></span>
+                  </div>
+                  <div
+                    class="w-full h-full bg-cover bg-center group-hover:scale-105 transition-transform duration-500"
+                    data-alt="Close-up product photograph of pristine diamond-shaped Kaju Katli sweets garnished with edible silver leaf (varak), arranged neatly on an antique brass platter with warm ambient lighting."
+                    style="
+                      background-image: url(&quot;https://lh3.googleusercontent.com/aida-public/AB6AXuCezCSOZxUs2o0oYmoqN21DIIKLX328FKkLuDxveoTZ-ASdhscA9z3Z9lCH1CkdRD7GwKPnAyQehMoRAK0FaGikoBt16Ol8cxjoSQ2dcjKPomwvzT7bUGwe8Y6I7goWPk_jrGqlR5o1cvi7NjYgrqAinUJ4I77SQSygdozO0fQwLolVKcjcASBdvKf4KodGtesS1g_NGdHihULMqcRNeZC-eVAMreP-_5A62QFyDQtJbMmg4TrXhPG_&quot;);
+                    "
+                  ></div>
+                </div>
+                <div class="flex flex-col pt-space-sm gap-space-xs">
+                  <div class="flex items-center justify-between">
+                    <h3
+                      class="font-product-name text-product-name text-on-surface group-hover:text-primary transition-colors"
+                    >
+                      Kaju Katli
+                    </h3>
+                  </div>
+                  <div class="flex items-baseline gap-space-xs">
+                    <span class="font-price text-price text-primary">₹680</span>
+                    <span class="text-caption text-on-surface-variant"
+                      >/ 500 g</span
+                    >
+                  </div>
+                  <!-- Size Variant Chips -->
+                  <div class="flex gap-1 my-1">
+                    <button
+                      class="px-2 py-0.5 bg-surface-container hover:bg-primary hover:text-on-primary text-[11px] font-button rounded transition-colors"
+                    >
+                      250g
+                    </button>
+                    <button
+                      class="px-2 py-0.5 bg-primary text-on-primary text-[11px] font-button rounded"
+                    >
+                      500g
+                    </button>
+                    <button
+                      class="px-2 py-0.5 bg-surface-container hover:bg-primary hover:text-on-primary text-[11px] font-button rounded transition-colors"
+                    >
+                      1kg
+                    </button>
+                  </div>
+                  <button
+                    class="w-full mt-space-xs py-2 bg-ivory border border-primary/20 text-primary font-button hover:bg-primary hover:text-on-primary rounded transition-all flex items-center justify-center gap-space-xs"
+                  >
+                    <span class="material-symbols-outlined text-[16px]"
+                      >shopping_bag</span
+                    >
+                    Add to cart
+                  </button>
+                </div>
+              </div>
+              <!-- Product 2: Motichoor Ladoo -->
+              <div class="flex flex-col group">
+                <div
+                  class="relative w-full aspect-[4/5] rounded-t-xl overflow-hidden bg-surface-container"
+                >
+                  <div class="absolute top-2 left-2 z-10 flex gap-space-xs">
+                    <span
+                      class="px-space-xs py-0.5 bg-saffron text-white text-[10px] font-bold uppercase tracking-wider rounded"
+                      >Fresh Batch</span
+                    >
+                  </div>
+                  <div class="absolute top-2 right-2 z-10">
+                    <span
+                      class="w-3.5 h-3.5 bg-leaf rounded-sm inline-block shadow-sm"
+                      title="Pure Vegetarian"
+                    ></span>
+                  </div>
+                  <div
+                    class="w-full h-full bg-cover bg-center group-hover:scale-105 transition-transform duration-500"
+                    data-alt="A pyramid stack of golden Motichoor Ladoos glistening with pure desi ghee, garnished with melon seeds and pistachios, shot against a deep maroon backdrop."
+                    style="
+                      background-image: url(&quot;https://lh3.googleusercontent.com/aida-public/AB6AXuD2OjCCGl-Z-fn3zWmCRX9nu_Ru0l_C-1si0RhkwYhnLDmAanyUBEKK7ZTfZcWYYJ8jJkder-irHcol_gUj-101OLG6dsIMbfgR1pifnL9LCEBkqpHLWjm3KKQ2wGX1hF3he-xbHAvHxaZV10zaqiobeHwiDzSVDAIJA3TrNY040u1qfAlVBoWSCz-dEmQZZyD5mOrMWTDsgvLCFGGeui6LwhNnqu5wUvoF8ZVFT5kMuEbJLxt_fh2r&quot;);
+                    "
+                  ></div>
+                </div>
+                <div class="flex flex-col pt-space-sm gap-space-xs">
+                  <h3
+                    class="font-product-name text-product-name text-on-surface group-hover:text-primary transition-colors"
+                  >
+                    Motichoor Ladoo
+                  </h3>
+                  <div class="flex items-baseline gap-space-xs">
+                    <span class="font-price text-price text-primary">₹420</span>
+                    <span class="text-caption text-on-surface-variant"
+                      >/ 500 g</span
+                    >
+                  </div>
+                  <div class="flex gap-1 my-1">
+                    <button
+                      class="px-2 py-0.5 bg-surface-container hover:bg-primary hover:text-on-primary text-[11px] font-button rounded transition-colors"
+                    >
+                      250g
+                    </button>
+                    <button
+                      class="px-2 py-0.5 bg-primary text-on-primary text-[11px] font-button rounded"
+                    >
+                      500g
+                    </button>
+                    <button
+                      class="px-2 py-0.5 bg-surface-container hover:bg-primary hover:text-on-primary text-[11px] font-button rounded transition-colors"
+                    >
+                      1kg
+                    </button>
+                  </div>
+                  <button
+                    class="w-full mt-space-xs py-2 bg-ivory border border-primary/20 text-primary font-button hover:bg-primary hover:text-on-primary rounded transition-all flex items-center justify-center gap-space-xs"
+                  >
+                    <span class="material-symbols-outlined text-[16px]"
+                      >shopping_bag</span
+                    >
+                    Add to cart
+                  </button>
+                </div>
+              </div>
+              <!-- Product 3: Malai Peda -->
+              <div class="flex flex-col group">
+                <div
+                  class="relative w-full aspect-[4/5] rounded-t-xl overflow-hidden bg-surface-container"
+                >
+                  <div class="absolute top-2 right-2 z-10">
+                    <span
+                      class="w-3.5 h-3.5 bg-leaf rounded-sm inline-block shadow-sm"
+                      title="Pure Vegetarian"
+                    ></span>
+                  </div>
+                  <div
+                    class="w-full h-full bg-cover bg-center group-hover:scale-105 transition-transform duration-500"
+                    data-alt="Soft creamy Malai Pedas garnished with saffron strands and slivered almonds, arranged delicately on banana leaf paper."
+                    style="
+                      background-image: url(&quot;https://lh3.googleusercontent.com/aida-public/AB6AXuDzAwGWwvb4_8g8Jg7oRpJo3GuSDFMe0O2HzHcBtGE6HVevuUJjyEpf9ekpxSlGWf3jKTd6rGaMR70m-J3Hi5dsoxgYz6zps6ClUuwoI2v3Z-g3pD-AwGBVZc6KKc3eFnGlm3KjrKh7FXyd0hiJwAoui1Iqfgf7Pt7_D4SyGLdqEwoy91LxAp9EeN1C49xY3mBCXkrnqAWfMkxFkUNWZJy7sgrGyTwqKz6ZDcGRkhEaW18hnDuMGkXj&quot;);
+                    "
+                  ></div>
+                </div>
+                <div class="flex flex-col pt-space-sm gap-space-xs">
+                  <h3
+                    class="font-product-name text-product-name text-on-surface group-hover:text-primary transition-colors"
+                  >
+                    Malai Peda
+                  </h3>
+                  <div class="flex items-baseline gap-space-xs">
+                    <span class="font-price text-price text-primary">₹480</span>
+                    <span class="text-caption text-on-surface-variant"
+                      >/ 500 g</span
+                    >
+                  </div>
+                  <div class="flex gap-1 my-1">
+                    <button
+                      class="px-2 py-0.5 bg-surface-container hover:bg-primary hover:text-on-primary text-[11px] font-button rounded transition-colors"
+                    >
+                      250g
+                    </button>
+                    <button
+                      class="px-2 py-0.5 bg-primary text-on-primary text-[11px] font-button rounded"
+                    >
+                      500g
+                    </button>
+                  </div>
+                  <button
+                    class="w-full mt-space-xs py-2 bg-ivory border border-primary/20 text-primary font-button hover:bg-primary hover:text-on-primary rounded transition-all flex items-center justify-center gap-space-xs"
+                  >
+                    <span class="material-symbols-outlined text-[16px]"
+                      >shopping_bag</span
+                    >
+                    Add to cart
+                  </button>
+                </div>
+              </div>
+              <!-- Product 4: Ghee Mysore Pak -->
+              <div class="flex flex-col group">
+                <div
+                  class="relative w-full aspect-[4/5] rounded-t-xl overflow-hidden bg-surface-container"
+                >
+                  <div class="absolute top-2 left-2 z-10 flex gap-space-xs">
+                    <span
+                      class="px-space-xs py-0.5 bg-primary text-on-primary text-[10px] font-bold uppercase tracking-wider rounded"
+                      >Chef Special</span
+                    >
+                  </div>
+                  <div class="absolute top-2 right-2 z-10">
+                    <span
+                      class="w-3.5 h-3.5 bg-leaf rounded-sm inline-block shadow-sm"
+                      title="Pure Vegetarian"
+                    ></span>
+                  </div>
+                  <div
+                    class="w-full h-full bg-cover bg-center group-hover:scale-105 transition-transform duration-500"
+                    data-alt="Rich porous Ghee Mysore Pak blocks with a golden crust oozing rich desi ghee, beautifully presented on a textured parchment plate."
+                    style="
+                      background-image: url(&quot;https://lh3.googleusercontent.com/aida-public/AB6AXuD67yypCBTCRnBEl8K-cohiPt7yUwMaZW-RVGQsbQMUyVE3XONr6O_gfP_B_KO3rsDc4IUrkiKhxsyJR4TMD6BRBf3dasGGcYi5peRZ0tknw_OctIyXbSZHIjTVm1N08C4WK9QzSx-LpQzo12ryv1zz6gRfzMPD7ScDlPWqMVnCddISNsmSX77Oy4sN_HLvFHoFo9qi7DKIwi3sm9xrOHeS6kZgAGMQgbrrhA-_p2Xb-7_3uFsBsD9j&quot;);
+                    "
+                  ></div>
+                </div>
+                <div class="flex flex-col pt-space-sm gap-space-xs">
+                  <h3
+                    class="font-product-name text-product-name text-on-surface group-hover:text-primary transition-colors"
+                  >
+                    Ghee Mysore Pak
+                  </h3>
+                  <div class="flex items-baseline gap-space-xs">
+                    <span class="font-price text-price text-primary">₹550</span>
+                    <span class="text-caption text-on-surface-variant"
+                      >/ 500 g</span
+                    >
+                  </div>
+                  <div class="flex gap-1 my-1">
+                    <button
+                      class="px-2 py-0.5 bg-surface-container hover:bg-primary hover:text-on-primary text-[11px] font-button rounded transition-colors"
+                    >
+                      250g
+                    </button>
+                    <button
+                      class="px-2 py-0.5 bg-primary text-on-primary text-[11px] font-button rounded"
+                    >
+                      500g
+                    </button>
+                  </div>
+                  <button
+                    class="w-full mt-space-xs py-2 bg-ivory border border-primary/20 text-primary font-button hover:bg-primary hover:text-on-primary rounded transition-all flex items-center justify-center gap-space-xs"
+                  >
+                    <span class="material-symbols-outlined text-[16px]"
+                      >shopping_bag</span
+                    >
+                    Add to cart
+                  </button>
+                </div>
+              </div>
+              <!-- Product 5: Gulab Jamun -->
+              <div class="flex flex-col group">
+                <div
+                  class="relative w-full aspect-[4/5] rounded-t-xl overflow-hidden bg-surface-container"
+                >
+                  <div class="absolute top-2 right-2 z-10">
+                    <span
+                      class="w-3.5 h-3.5 bg-leaf rounded-sm inline-block shadow-sm"
+                      title="Pure Vegetarian"
+                    ></span>
+                  </div>
+                  <div
+                    class="w-full h-full bg-cover bg-center group-hover:scale-105 transition-transform duration-500"
+                    data-alt="Juicy dark brown Gulab Jamun spheres submerged in fragrant rose and cardamom sugar syrup inside a shallow terracotta bowl."
+                    style="
+                      background-image: url(&quot;https://lh3.googleusercontent.com/aida-public/AB6AXuAAqg3nJZK43cvEzxvoSTe7aDeVTazaEg5VFfcrlT33kEoFVKtahurCB9mjKas0qZ5d4wZsif5wg9XrbhvLoOR8OMXVFnTtksr0HrQ5SezzfDvIItaamsQNoIS0Z_HnhrjDLT0p0qxmiXX-RlIny7sUrEM5C-o7ujs88ymTzHuS_YMUc3288KVsATUF5KgADpR-iLKSfig8vKuNXuTcA3HymfgamC9wxJ-p2bo4qon2S0tdeE0Ur8IG&quot;);
+                    "
+                  ></div>
+                </div>
+                <div class="flex flex-col pt-space-sm gap-space-xs">
+                  <h3
+                    class="font-product-name text-product-name text-on-surface group-hover:text-primary transition-colors"
+                  >
+                    Gulab Jamun
+                  </h3>
+                  <div class="flex items-baseline gap-space-xs">
+                    <span class="font-price text-price text-primary">₹380</span>
+                    <span class="text-caption text-on-surface-variant"
+                      >/ 500 g</span
+                    >
+                  </div>
+                  <div class="flex gap-1 my-1">
+                    <button
+                      class="px-2 py-0.5 bg-primary text-on-primary text-[11px] font-button rounded"
+                    >
+                      500g (6 pcs)
+                    </button>
+                    <button
+                      class="px-2 py-0.5 bg-surface-container hover:bg-primary hover:text-on-primary text-[11px] font-button rounded transition-colors"
+                    >
+                      1kg (12 pcs)
+                    </button>
+                  </div>
+                  <button
+                    class="w-full mt-space-xs py-2 bg-ivory border border-primary/20 text-primary font-button hover:bg-primary hover:text-on-primary rounded transition-all flex items-center justify-center gap-space-xs"
+                  >
+                    <span class="material-symbols-outlined text-[16px]"
+                      >shopping_bag</span
+                    >
+                    Add to cart
+                  </button>
+                </div>
+              </div>
+              <!-- Product 6: Soan Papdi -->
+              <div class="flex flex-col group">
+                <div
+                  class="relative w-full aspect-[4/5] rounded-t-xl overflow-hidden bg-surface-container"
+                >
+                  <div class="absolute top-2 right-2 z-10">
+                    <span
+                      class="w-3.5 h-3.5 bg-leaf rounded-sm inline-block shadow-sm"
+                      title="Pure Vegetarian"
+                    ></span>
+                  </div>
+                  <div
+                    class="w-full h-full bg-cover bg-center group-hover:scale-105 transition-transform duration-500"
+                    data-alt="Flaky cubical cubes of Soan Papdi topped with finely crushed pistachios, presented in a traditional gift box configuration."
+                    style="
+                      background-image: url(&quot;https://lh3.googleusercontent.com/aida-public/AB6AXuDGD0s4RzI8ld5zWnEsWUTQo-ZFpi83twdb-K_kEcnjMUWn4UALbusn5SnFxatNAJW-EkPaVdDQNHpMY0dlS2oz9cwxUX5z4Wyt6k53AOPRtdw6mNUsxzPddDTV-NWNZwyL1cGd2mMPPGxhKb-bA1PLBsut1pLhHmNhrfve3mKh5X3PoyVGpnLXEpErQEumZtBK25R5Fa-RfbeQ0MDvMBrIqTuOxjdrckoBTdZXlnONChVNKoHxa-WB&quot;);
+                    "
+                  ></div>
+                </div>
+                <div class="flex flex-col pt-space-sm gap-space-xs">
+                  <h3
+                    class="font-product-name text-product-name text-on-surface group-hover:text-primary transition-colors"
+                  >
+                    Soan Papdi
+                  </h3>
+                  <div class="flex items-baseline gap-space-xs">
+                    <span class="font-price text-price text-primary">₹350</span>
+                    <span class="text-caption text-on-surface-variant"
+                      >/ 500 g</span
+                    >
+                  </div>
+                  <div class="flex gap-1 my-1">
+                    <button
+                      class="px-2 py-0.5 bg-primary text-on-primary text-[11px] font-button rounded"
+                    >
+                      500g Box
+                    </button>
+                  </div>
+                  <button
+                    class="w-full mt-space-xs py-2 bg-ivory border border-primary/20 text-primary font-button hover:bg-primary hover:text-on-primary rounded transition-all flex items-center justify-center gap-space-xs"
+                  >
+                    <span class="material-symbols-outlined text-[16px]"
+                      >shopping_bag</span
+                    >
+                    Add to cart
+                  </button>
+                </div>
+              </div>
+              <!-- Product 7: Dry Fruit Ladoo -->
+              <div class="flex flex-col group">
+                <div
+                  class="relative w-full aspect-[4/5] rounded-t-xl overflow-hidden bg-surface-container"
+                >
+                  <div class="absolute top-2 left-2 z-10 flex gap-space-xs">
+                    <span
+                      class="px-space-xs py-0.5 bg-tertiary text-on-tertiary text-[10px] font-bold uppercase tracking-wider rounded"
+                      >Sugar Free</span
+                    >
+                  </div>
+                  <div class="absolute top-2 right-2 z-10">
+                    <span
+                      class="w-3.5 h-3.5 bg-leaf rounded-sm inline-block shadow-sm"
+                      title="Pure Vegetarian"
+                    ></span>
+                  </div>
+                  <div
+                    class="w-full h-full bg-cover bg-center group-hover:scale-105 transition-transform duration-500"
+                    data-alt="Nutritious dense Dry Fruit Ladoos made with dates, figs, almonds, and walnuts without added refined sugar."
+                    style="
+                      background-image: url(&quot;https://lh3.googleusercontent.com/aida-public/AB6AXuAo6xo20pdy6xPtFI2eQmzrmex1-XQE0Cdg6CSW116nl5FFQiOpp48VSiX42C2iS1TxcP49KXDIzRWueX3WrcEwMSob-sPTppY6_4RAYJ_L-8FRaZgu5Ng0oOupiDxuuLVj97QH45s6FB_Qs212ZRHhiVfZdqYg8kPpnUq0L0mJLtiRkUUdB4dYUv_eQJK89cEtAKDW9mD1ocRMWS6sT2dUm6FrUdqXNJPWXHT4fcNsgyMsif0JE7G-&quot;);
+                    "
+                  ></div>
+                </div>
+                <div class="flex flex-col pt-space-sm gap-space-xs">
+                  <h3
+                    class="font-product-name text-product-name text-on-surface group-hover:text-primary transition-colors"
+                  >
+                    Dry Fruit Ladoo
+                  </h3>
+                  <div class="flex items-baseline gap-space-xs">
+                    <span class="font-price text-price text-primary">₹850</span>
+                    <span class="text-caption text-on-surface-variant"
+                      >/ 500 g</span
+                    >
+                  </div>
+                  <div class="flex gap-1 my-1">
+                    <button
+                      class="px-2 py-0.5 bg-primary text-on-primary text-[11px] font-button rounded"
+                    >
+                      500g
+                    </button>
+                    <button
+                      class="px-2 py-0.5 bg-surface-container hover:bg-primary hover:text-on-primary text-[11px] font-button rounded transition-colors"
+                    >
+                      1kg
+                    </button>
+                  </div>
+                  <button
+                    class="w-full mt-space-xs py-2 bg-ivory border border-primary/20 text-primary font-button hover:bg-primary hover:text-on-primary rounded transition-all flex items-center justify-center gap-space-xs"
+                  >
+                    <span class="material-symbols-outlined text-[16px]"
+                      >shopping_bag</span
+                    >
+                    Add to cart
+                  </button>
+                </div>
+              </div>
+              <!-- Product 8: Besan Ladoo -->
+              <div class="flex flex-col group">
+                <div
+                  class="relative w-full aspect-[4/5] rounded-t-xl overflow-hidden bg-surface-container"
+                >
+                  <div class="absolute top-2 right-2 z-10">
+                    <span
+                      class="w-3.5 h-3.5 bg-leaf rounded-sm inline-block shadow-sm"
+                      title="Pure Vegetarian"
+                    ></span>
+                  </div>
+                  <div
+                    class="w-full h-full bg-cover bg-center group-hover:scale-105 transition-transform duration-500"
+                    data-alt="Traditional roasted gram flour Besan Ladoos garnished with melon seeds and cardamom, exuding a rich golden texture."
+                    style="
+                      background-image: url(&quot;https://lh3.googleusercontent.com/aida-public/AB6AXuCvKPLsmV4vdfZzL8reFXhIPFDE2uDc5Sb6kWyMc_R-zv1lsAB-Zs86UPeQ7OfwWK6AOB4QL2IhLaDxHfMh9YS6MQBwNQn7w8oms6HMp_LuQKFO-0xz7owH16IH5pv_r2Zvab_efYzDRHxTGeGGViY2KjzfiwOnD8Wk4cLKMT10pvBavBgd7teBtzo53YDXHVNPvL6TmDee_rpw6xZOLPp0rMN3FIHEWM88ZlZweqY5Ys1N0RX-3AUy&quot;);
+                    "
+                  ></div>
+                </div>
+                <div class="flex flex-col pt-space-sm gap-space-xs">
+                  <h3
+                    class="font-product-name text-product-name text-on-surface group-hover:text-primary transition-colors"
+                  >
+                    Besan Ladoo
+                  </h3>
+                  <div class="flex items-baseline gap-space-xs">
+                    <span class="font-price text-price text-primary">₹400</span>
+                    <span class="text-caption text-on-surface-variant"
+                      >/ 500 g</span
+                    >
+                  </div>
+                  <div class="flex gap-1 my-1">
+                    <button
+                      class="px-2 py-0.5 bg-surface-container hover:bg-primary hover:text-on-primary text-[11px] font-button rounded transition-colors"
+                    >
+                      250g
+                    </button>
+                    <button
+                      class="px-2 py-0.5 bg-primary text-on-primary text-[11px] font-button rounded"
+                    >
+                      500g
+                    </button>
+                  </div>
+                  <button
+                    class="w-full mt-space-xs py-2 bg-ivory border border-primary/20 text-primary font-button hover:bg-primary hover:text-on-primary rounded transition-all flex items-center justify-center gap-space-xs"
+                  >
+                    <span class="material-symbols-outlined text-[16px]"
+                      >shopping_bag</span
+                    >
+                    Add to cart
+                  </button>
+                </div>
+              </div>
+              <!-- Product 9: Rasgulla -->
+              <div class="flex flex-col group">
+                <div
+                  class="relative w-full aspect-[4/5] rounded-t-xl overflow-hidden bg-surface-container"
+                >
+                  <div class="absolute top-2 right-2 z-10">
+                    <span
+                      class="w-3.5 h-3.5 bg-leaf rounded-sm inline-block shadow-sm"
+                      title="Pure Vegetarian"
+                    ></span>
+                  </div>
+                  <div
+                    class="w-full h-full bg-cover bg-center group-hover:scale-105 transition-transform duration-500"
+                    data-alt="Spongy white cottage cheese Rasgulla balls floating in light fragrant sugar syrup inside a crystal bowl."
+                    style="
+                      background-image: url(&quot;https://lh3.googleusercontent.com/aida-public/AB6AXuDuR5XbIa57il6LQYcc3HVDr5zDFrKY93RQvy2jdjhkLRJfEENOAdqk5U9eLbOO-_6t_0yLCV8bZRHzumcYBG3iMce-a-sEEIiBTcuyeEPLYlOIo5v-ALUt7ui7JAcI5lqbtdRPBP7pAVmDX8bRFw97HexIs3pF8aKQJ7XoS2y3wmrfEMbZFHPhXgCLAIMfhswSoxto71XYoFF3tjWnrJb7UpdyFZ7FIte1AISznjiNkbgCuuspRV_E&quot;);
+                    "
+                  ></div>
+                </div>
+                <div class="flex flex-col pt-space-sm gap-space-xs">
+                  <h3
+                    class="font-product-name text-product-name text-on-surface group-hover:text-primary transition-colors"
+                  >
+                    Bengali Rasgulla
+                  </h3>
+                  <div class="flex items-baseline gap-space-xs">
+                    <span class="font-price text-price text-primary">₹340</span>
+                    <span class="text-caption text-on-surface-variant"
+                      >/ tin (12 pcs)</span
+                    >
+                  </div>
+                  <div class="flex gap-1 my-1">
+                    <button
+                      class="px-2 py-0.5 bg-primary text-on-primary text-[11px] font-button rounded"
+                    >
+                      12 Pcs Tin
+                    </button>
+                  </div>
+                  <button
+                    class="w-full mt-space-xs py-2 bg-ivory border border-primary/20 text-primary font-button hover:bg-primary hover:text-on-primary rounded transition-all flex items-center justify-center gap-space-xs"
+                  >
+                    <span class="material-symbols-outlined text-[16px]"
+                      >shopping_bag</span
+                    >
+                    Add to cart
+                  </button>
+                </div>
+              </div>
+              <!-- Product 10: Kalakand -->
+              <div class="flex flex-col group">
+                <div
+                  class="relative w-full aspect-[4/5] rounded-t-xl overflow-hidden bg-surface-container"
+                >
+                  <div class="absolute top-2 left-2 z-10 flex gap-space-xs">
+                    <span
+                      class="px-space-xs py-0.5 bg-saffron text-white text-[10px] font-bold uppercase tracking-wider rounded"
+                      >Morning Batch</span
+                    >
+                  </div>
+                  <div class="absolute top-2 right-2 z-10">
+                    <span
+                      class="w-3.5 h-3.5 bg-leaf rounded-sm inline-block shadow-sm"
+                      title="Pure Vegetarian"
+                    ></span>
+                  </div>
+                  <div
+                    class="w-full h-full bg-cover bg-center group-hover:scale-105 transition-transform duration-500"
+                    data-alt="Grains of rich dairy Kalakand milk cake garnished with slivered pistachios and silver foil."
+                    style="
+                      background-image: url(&quot;https://lh3.googleusercontent.com/aida-public/AB6AXuCcQK5yd_RneJvetXtnGtv6dm6QHNRs1ACgZXCfiWU-nRwoHASCoHPWNCxfojNhxBtB35qIqe4n34qwLIDDkFQ9nW_6y8alp0zYrgglwhdUVBE216ZLGCPWq8eLTTUnKVLo0S-BYwNjVHb6SC4COvSRNGWKjfRkTcCmy6ICa8S5gJ1Isr67hhdptarmwiE0TK1Z2ndLYgY1gjpnMhCKP78p47p6KbRg-XrJM7miI1kWd9kIK2KqoS8y&quot;);
+                    "
+                  ></div>
+                </div>
+                <div class="flex flex-col pt-space-sm gap-space-xs">
+                  <h3
+                    class="font-product-name text-product-name text-on-surface group-hover:text-primary transition-colors"
+                  >
+                    Alwar Kalakand
+                  </h3>
+                  <div class="flex items-baseline gap-space-xs">
+                    <span class="font-price text-price text-primary">₹520</span>
+                    <span class="text-caption text-on-surface-variant"
+                      >/ 500 g</span
+                    >
+                  </div>
+                  <div class="flex gap-1 my-1">
+                    <button
+                      class="px-2 py-0.5 bg-surface-container hover:bg-primary hover:text-on-primary text-[11px] font-button rounded transition-colors"
+                    >
+                      250g
+                    </button>
+                    <button
+                      class="px-2 py-0.5 bg-primary text-on-primary text-[11px] font-button rounded"
+                    >
+                      500g
+                    </button>
+                  </div>
+                  <button
+                    class="w-full mt-space-xs py-2 bg-ivory border border-primary/20 text-primary font-button hover:bg-primary hover:text-on-primary rounded transition-all flex items-center justify-center gap-space-xs"
+                  >
+                    <span class="material-symbols-outlined text-[16px]"
+                      >shopping_bag</span
+                    >
+                    Add to cart
+                  </button>
+                </div>
+              </div>
+              <!-- Product 11: Anjeer Roll -->
+              <div class="flex flex-col group">
+                <div
+                  class="relative w-full aspect-[4/5] rounded-t-xl overflow-hidden bg-surface-container"
+                >
+                  <div class="absolute top-2 right-2 z-10">
+                    <span
+                      class="w-3.5 h-3.5 bg-leaf rounded-sm inline-block shadow-sm"
+                      title="Pure Vegetarian"
+                    ></span>
+                  </div>
+                  <div
+                    class="w-full h-full bg-cover bg-center group-hover:scale-105 transition-transform duration-500"
+                    data-alt="Rolled fig and pistachio slices arranged on a tray, showcasing the dark fig outer layer and green pistachio core."
+                    style="
+                      background-image: url(&quot;https://lh3.googleusercontent.com/aida-public/AB6AXuDS20XLwBnzHxNqxcaDXvgm8WC_Xwoh9rrL-d0uIW4FtMWjerf-NgQczgRySn64GfGVMCxAGtVNIeHMVnWygqYq6_3dtJhyzVmZbQdN7uZDtsXH2v_m0V6R26TbT3P6NRCEFikiGDDCTw6bTDQ1vJAB0KkVe0x6McQX16jfmzUCsy6RPRaQVahQdKxjLPPWDIzcktJHQmyAUbn6lyAvkTTL7ma0ooUjOj8DbisPvnCU7tyPL-peLoxm&quot;);
+                    "
+                  ></div>
+                </div>
+                <div class="flex flex-col pt-space-sm gap-space-xs">
+                  <h3
+                    class="font-product-name text-product-name text-on-surface group-hover:text-primary transition-colors"
+                  >
+                    Anjeer pista Roll
+                  </h3>
+                  <div class="flex items-baseline gap-space-xs">
+                    <span class="font-price text-price text-primary">₹900</span>
+                    <span class="text-caption text-on-surface-variant"
+                      >/ 500 g</span
+                    >
+                  </div>
+                  <div class="flex gap-1 my-1">
+                    <button
+                      class="px-2 py-0.5 bg-primary text-on-primary text-[11px] font-button rounded"
+                    >
+                      500g
+                    </button>
+                  </div>
+                  <button
+                    class="w-full mt-space-xs py-2 bg-ivory border border-primary/20 text-primary font-button hover:bg-primary hover:text-on-primary rounded transition-all flex items-center justify-center gap-space-xs"
+                  >
+                    <span class="material-symbols-outlined text-[16px]"
+                      >shopping_bag</span
+                    >
+                    Add to cart
+                  </button>
+                </div>
+              </div>
+              <!-- Product 12: Shahi Gujiya -->
+              <div class="flex flex-col group">
+                <div
+                  class="relative w-full aspect-[4/5] rounded-t-xl overflow-hidden bg-surface-container"
+                >
+                  <div class="absolute top-2 left-2 z-10 flex gap-space-xs">
+                    <span
+                      class="px-space-xs py-0.5 bg-crimson text-white text-[10px] font-bold uppercase tracking-wider rounded"
+                      >Festive</span
+                    >
+                  </div>
+                  <div class="absolute top-2 right-2 z-10">
+                    <span
+                      class="w-3.5 h-3.5 bg-leaf rounded-sm inline-block shadow-sm"
+                      title="Pure Vegetarian"
+                    ></span>
+                  </div>
+                  <div
+                    class="w-full h-full bg-cover bg-center group-hover:scale-105 transition-transform duration-500"
+                    data-alt="Crispy crescent-shaped Shahi Gujiyas stuffed with khoya and dry fruits, glistening with light sugar glaze."
+                    style="
+                      background-image: url(&quot;https://lh3.googleusercontent.com/aida-public/AB6AXuBYV7Q_QXoUYNyWN3tyalQJOGt6q5rkbh6Dr459C2BSD3P842gXm5EIqLoJHIVsS9RrFJQgZFn9hBiqQAY54uZ9lsqycocKwU70w_GOZwcgU3qSFpGqr9HbeL3ZEclt7Fvte-YSMMgslqsF4m8tXiKCMJfNt4O3yxeGPf1QlVdkW1gWSj6j1EL569FZ696AIwALx_OcC3xAcR9m3rxgMzc0vVjF8EYca_IPEpqtD4jMG8iPOVx-mhQF&quot;);
+                    "
+                  ></div>
+                </div>
+                <div class="flex flex-col pt-space-sm gap-space-xs">
+                  <h3
+                    class="font-product-name text-product-name text-on-surface group-hover:text-primary transition-colors"
+                  >
+                    Shahi Gujiya
+                  </h3>
+                  <div class="flex items-baseline gap-space-xs">
+                    <span class="font-price text-price text-primary">₹460</span>
+                    <span class="text-caption text-on-surface-variant"
+                      >/ 500 g</span
+                    >
+                  </div>
+                  <div class="flex gap-1 my-1">
+                    <button
+                      class="px-2 py-0.5 bg-primary text-on-primary text-[11px] font-button rounded"
+                    >
+                      500g
+                    </button>
+                  </div>
+                  <button
+                    class="w-full mt-space-xs py-2 bg-ivory border border-primary/20 text-primary font-button hover:bg-primary hover:text-on-primary rounded transition-all flex items-center justify-center gap-space-xs"
+                  >
+                    <span class="material-symbols-outlined text-[16px]"
+                      >shopping_bag</span
+                    >
+                    Add to cart
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!-- Load More Section -->
+          <div
+            class="flex flex-col items-center justify-center mt-space-xl pt-space-lg gap-space-sm"
+          >
+            <span class="font-body text-caption text-on-surface-variant"
+              >Showing 12 of 38 items</span
+            >
+            <div
+              class="w-48 h-1 bg-surface-container-high rounded-full overflow-hidden mb-space-xs"
+            >
+              <div class="w-1/3 h-full bg-primary rounded-full"></div>
+            </div>
+            <button
+              class="px-space-xl py-3 bg-primary text-on-primary font-button hover:bg-primary-container rounded transition-colors shadow-sm"
+            >
+              Load more sweets
+            </button>
+          </div>
+        </section>
+        <!-- SEO Text Block -->
+        <section class="bg-surface-container-low py-space-xl mt-space-xl">
+          <div
+            class="max-w-[1000px] mx-auto px-[20px] lg:px-[48px] flex flex-col gap-space-md"
+          >
+            <h2 class="font-headline-lg text-primary">
+              Sweets in Heritage Chowk
+            </h2>
+            <p
+              class="font-body text-[17px] leading-[1.7] text-on-surface-variant"
+            >
+              At Shiv Mishthan Bhandar, located in the vibrant heart of Heritage
+              Chowk, our mithai tradition spans across generations. Every
+              morning before dawn, our master halwais kindle traditional brass
+              cauldrons to churn pure cow milk into fresh khoya, paneer, and
+              malai. We take immense pride in preparing iconic delicacies like
+              Kaju Katli, Motichoor Ladoo, and Ghee Mysore Pak strictly adhering
+              to time-honored recipes without artificial preservatives or
+              vegetable fats. Whether you are celebrating festivals, family
+              weddings, or simply craving an authentic piece of heritage
+              sweetness, our sweets bring unmatched purity and heartfelt
+              devotion directly to your table.
+            </p>
+          </div>
+        </section>
+      </div>
+    </main>
+    <!-- Floating Actions -->
+    <div class="fixed bottom-6 right-6 z-40 flex flex-col gap-space-sm">
+      <a
+        aria-label="WhatsApp"
+        class="w-12 h-12 rounded-full bg-leaf text-white flex items-center justify-center shadow-lg hover:scale-105 transition-transform"
+        href="https://whatsapp.com"
+        target="_blank"
+      >
+        <span class="material-symbols-outlined text-[24px]">chat</span>
+      </a>
+      <a
+        aria-label="Call Us"
+        class="w-12 h-12 rounded-full bg-primary text-on-primary flex items-center justify-center shadow-lg hover:scale-105 transition-transform"
+        href="tel:+919876543210"
+      >
+        <span class="material-symbols-outlined text-[24px]">call</span>
+      </a>
+    </div>
+    <footer class="w-full bg-maroon text-ivory pt-space-xl pb-space-lg">
+      <div class="max-w-[1320px] mx-auto px-[20px] lg:px-[48px]">
+        <div
+          class="grid grid-cols-1 md:grid-cols-4 gap-space-xl pb-space-xl border-b border-outline/30"
+        >
+          <div class="flex flex-col gap-space-md">
+            <span class="font-headline-md text-light-gold"
+              >Shiv Mishthan Bhandar</span
+            >
+            <p class="text-caption text-parchment/80">
+              Serving pure heritage mithai, authentic restaurant dining, and
+              exquisite bakery treats crafted with authentic ghee and devotion.
+            </p>
+          </div>
+          <div class="flex flex-col gap-space-sm">
+            <span class="text-button text-light-gold uppercase tracking-wider"
+              >Quick Links</span
+            >
+            <a
+              class="text-caption text-parchment/80 hover:text-ivory"
+              data-path="sweets"
+              href="#"
+              >Sweets Collection</a
+            >
+            <a
+              class="text-caption text-parchment/80 hover:text-ivory"
+              data-path="restaurant"
+              href="#"
+              >Restaurant Menu</a
+            >
+            <a
+              class="text-caption text-parchment/80 hover:text-ivory"
+              data-path="bakery"
+              href="#"
+              >Artisan Bakery</a
+            >
+            <a
+              class="text-caption text-parchment/80 hover:text-ivory"
+              data-path="namkeen"
+              href="#"
+              >Traditional Namkeen</a
+            >
+          </div>
+          <div class="flex flex-col gap-space-sm">
+            <span class="text-button text-light-gold uppercase tracking-wider"
+              >Contact Us</span
+            >
+            <span class="text-caption text-parchment/80"
+              >Main Bazaar, Heritage Chowk, City - 110001</span
+            >
+            <span class="text-caption text-parchment/80"
+              >Phone: +91 98765 43210</span
+            >
+            <span class="text-caption text-parchment/80"
+              >Email: care@shivmishthan.com</span
+            >
+          </div>
+          <div class="flex flex-col gap-space-sm">
+            <span class="text-button text-light-gold uppercase tracking-wider"
+              >FSSAI License</span
+            >
+            <span class="text-caption text-parchment/80"
+              >Lic. No. 10012021000345</span
+            >
+            <p class="text-caption text-parchment/60 mt-space-xs">
+              Committed to highest standards of food safety and hygiene.
+            </p>
+          </div>
+        </div>
+        <div class="pt-space-md text-center text-caption text-parchment/60">
+          © 2024 Shiv Mishthan Bhandar. All rights reserved.
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>

@@ -1,0 +1,963 @@
+<!doctype html>
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <meta content="web_standard" name="shell-type" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Marcellus&amp;family=Hind:wght@400;500;600;700&amp;display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      @layer base {
+        html,
+        body {
+          margin: 0;
+          padding: 0;
+        }
+        body {
+          overscroll-behavior: none;
+        }
+        main > :first-child {
+          margin-top: 0 !important;
+        }
+        main > :last-child {
+          margin-bottom: 0 !important;
+        }
+      }
+      ::-webkit-scrollbar {
+        display: none;
+      }
+    </style>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              "tertiary-fixed-dim": "#edbf7f",
+              "on-secondary-fixed": "#40010e",
+              "on-surface": "#1d1c0a",
+              "on-background": "#1d1c0a",
+              ivory: "#FFFDF0",
+              tertiary: "#5d3f0a",
+              egg: "#9A5B1E",
+              "surface-variant": "#e7e4c5",
+              "inverse-on-surface": "#f6f2d3",
+              ray: "#FDF6B8",
+              "on-error": "#ffffff",
+              surface: "#fefadb",
+              "outline-variant": "#e2bebc",
+              "on-secondary-fixed-variant": "#7a2c37",
+              "surface-container-low": "#f9f5d6",
+              "on-tertiary": "#ffffff",
+              "surface-dim": "#dfdbbd",
+              secondary: "#98434d",
+              "primary-container": "#b3202a",
+              "secondary-fixed-dim": "#ffb2b8",
+              "primary-fixed-dim": "#ffb3af",
+              "surface-container-lowest": "#ffffff",
+              error: "#A3261F",
+              "primary-fixed": "#ffdad7",
+              "on-tertiary-fixed-variant": "#60410c",
+              "on-error-container": "#93000a",
+              primary: "#8f0017",
+              "on-primary-container": "#ffc8c5",
+              "soft-ink": "#6A4B40",
+              "inverse-primary": "#ffb3af",
+              "on-primary": "#ffffff",
+              saffron: "#E8841C",
+              crimson: "#B3202A",
+              "on-secondary": "#ffffff",
+              "inverse-surface": "#32311d",
+              "secondary-fixed": "#ffdadb",
+              "crimson-deep": "#8F1721",
+              outline: "#8e706e",
+              "on-tertiary-container": "#fdce8d",
+              "surface-bright": "#fefadb",
+              "on-tertiary-fixed": "#291800",
+              "antique-gold": "#C49A5E",
+              "surface-tint": "#b6222c",
+              "on-primary-fixed-variant": "#930018",
+              "kajal-ink": "#2B1712",
+              "surface-container-high": "#ede9cb",
+              malai: "#FEFADB",
+              parchment: "#F6E9C0",
+              "tertiary-container": "#785621",
+              maroon: "#5A1420",
+              background: "#fefadb",
+              "on-secondary-container": "#782b35",
+              "on-surface-variant": "#5a403f",
+              "secondary-container": "#fe959f",
+              "surface-container": "#f3efd0",
+              "error-container": "#ffdad6",
+              "tertiary-fixed": "#ffddb2",
+              leaf: "#1F7A4D",
+              "light-gold": "#E3C48A",
+              "surface-container-highest": "#e7e4c5",
+              "on-primary-fixed": "#410005",
+            },
+            borderRadius: {
+              DEFAULT: "0.125rem",
+              lg: "0.25rem",
+              xl: "0.5rem",
+              full: "0.75rem",
+            },
+            spacing: {
+              "space-xs": "0.25rem",
+              "space-xl": "2.5rem",
+              "space-lg": "1.5rem",
+              gutter: "1.5rem",
+              margin: "2rem",
+              "space-sm": "0.5rem",
+              "space-md": "1rem",
+            },
+            fontFamily: {
+              "headline-lg": ["Marcellus"],
+              price: ["Hind"],
+              body: ["Hind"],
+              "product-name": ["Marcellus"],
+              button: ["Hind"],
+              "headline-hero": ["Marcellus"],
+              "headline-md": ["Marcellus"],
+              caption: ["Hind"],
+            },
+            fontSize: {
+              "headline-lg": [
+                "clamp(1.75rem, 1.2rem + 2vw, 2.75rem)",
+                {
+                  lineHeight: "1.15",
+                  letterSpacing: "-0.005em",
+                  fontWeight: "400",
+                },
+              ],
+              price: [
+                "1.0625rem",
+                { lineHeight: "1", letterSpacing: "0", fontWeight: "600" },
+              ],
+              body: [
+                "1.0625rem",
+                { lineHeight: "1.65", letterSpacing: "0", fontWeight: "400" },
+              ],
+              "product-name": [
+                "1.0625rem",
+                { lineHeight: "1.3", letterSpacing: "0", fontWeight: "400" },
+              ],
+              button: [
+                "0.9375rem",
+                { lineHeight: "1", letterSpacing: "0.01em", fontWeight: "600" },
+              ],
+              "headline-hero": [
+                "clamp(2.25rem, 1.4rem + 3.4vw, 3.9rem)",
+                {
+                  lineHeight: "1.08",
+                  letterSpacing: "-0.01em",
+                  fontWeight: "400",
+                },
+              ],
+              "headline-md": [
+                "clamp(1.25rem, 1.1rem + 0.8vw, 1.6rem)",
+                { lineHeight: "1.25", letterSpacing: "0", fontWeight: "400" },
+              ],
+              caption: [
+                "0.875rem",
+                {
+                  lineHeight: "1.5",
+                  letterSpacing: "0.005em",
+                  fontWeight: "400",
+                },
+              ],
+            },
+          },
+        },
+      };
+    </script>
+  </head>
+  <body class="bg-surface font-body text-on-surface">
+    <header
+      class="fixed top-0 w-full z-50 bg-surface/90 backdrop-blur-xl shadow-[0_1px_8px_rgba(0,0,0,0.04)]"
+    >
+      <div
+        class="max-w-[1320px] mx-auto px-[20px] lg:px-[48px] h-20 flex items-center justify-between"
+      >
+        <div class="flex items-center gap-space-md">
+          <a class="flex items-center gap-space-sm" data-path="home" href="#">
+            <img
+              alt="logo.png"
+              class="h-8 w-auto object-contain"
+              src="https://lh3.googleusercontent.com/aida/AEtjO1W5Bln27qMxatJ2wSdfY_sqrX5t4DnOIFIaqTxdWPImVIHmreJGJ4g0KwR_rbsw3CwdmlbQKRfw-_EARFqDykT-CS9VKk2vlwFFV2Q0Sz3I8evQWkVskx_kDMthnKV97-9-JbzVunh6eE6dtn1-y4mGpkjOSoz2s8NE5U7sA8pleTNjjPCT4PZzzhtp71UatK0ajNkUyoBpIIMH3V28Krf27Od_ajy6oAARM6TJUnvJ9f_HHIafQF-YPt9dR-hcgJrGPvzlC0du"
+            />
+            <span class="font-headline-md text-primary tracking-wide"
+              >Shiv Mishthan Bhandar</span
+            >
+          </a>
+        </div>
+        <nav
+          class="hidden lg:flex items-center gap-space-lg"
+          data-active-classes="text-primary font-bold"
+        >
+          <a
+            class="text-on-surface-variant hover:text-primary transition-colors text-button"
+            data-path="sweets"
+            href="#"
+            >Sweets</a
+          >
+          <a
+            class="text-on-surface-variant hover:text-primary transition-colors text-button"
+            data-path="restaurant"
+            href="#"
+            >Restaurant</a
+          >
+          <a
+            class="text-on-surface-variant hover:text-primary transition-colors text-button"
+            data-path="bakery"
+            href="#"
+            >Bakery</a
+          >
+          <a
+            class="text-on-surface-variant hover:text-primary transition-colors text-button"
+            data-path="namkeen"
+            href="#"
+            >Namkeen</a
+          >
+          <a
+            class="text-on-surface-variant hover:text-primary transition-colors text-button"
+            data-path="about"
+            href="#"
+            >About</a
+          >
+          <a
+            class="text-on-surface-variant hover:text-primary transition-colors text-button"
+            data-path="contact"
+            href="#"
+            >Contact</a
+          >
+        </nav>
+        <div class="flex items-center gap-space-md">
+          <a
+            class="hidden md:flex items-center gap-space-xs text-on-surface-variant hover:text-primary"
+            href="tel:+919876543210"
+          >
+            <span class="material-symbols-outlined text-[20px]">call</span>
+            <span class="text-caption">+91 98765 43210</span>
+          </a>
+          <button
+            aria-label="Search"
+            class="p-space-xs text-on-surface-variant hover:text-primary"
+          >
+            <span class="material-symbols-outlined text-[22px]">search</span>
+          </button>
+          <button
+            aria-label="Cart"
+            class="relative p-space-xs text-on-surface-variant hover:text-primary"
+          >
+            <span class="material-symbols-outlined text-[22px]"
+              >shopping_bag</span
+            >
+            <span
+              class="absolute top-0 right-0 bg-primary text-on-primary text-[10px] font-bold w-4 h-4 rounded-full flex items-center justify-center"
+              >3</span
+            >
+          </button>
+          <div
+            class="w-8 h-8 rounded-full bg-primary flex items-center justify-center"
+          >
+            <span class="material-symbols-outlined text-on-primary text-[18px]"
+              >person</span
+            >
+          </div>
+        </div>
+      </div>
+    </header>
+    <main class="w-full pt-20 bg-surface">
+      <div class="flex flex-col w-full">
+        <!-- S1: Hero Section -->
+        <section
+          class="relative min-h-[85vh] flex items-center overflow-hidden bg-surface py-space-xl"
+        >
+          <div
+            class="absolute -top-32 -left-32 w-[600px] h-[600px] rounded-full pointer-events-none opacity-40 bg-[conic-gradient(from_0deg_at_50%_50%,#fefadb_0deg,#FDF6B8_45deg,#fefadb_90deg,#FDF6B8_135deg,#fefadb_180deg,#FDF6B8_225deg,#fefadb_270deg,#FDF6B8_315deg,#fefadb_360deg)]"
+          ></div>
+          <div
+            class="max-w-[1320px] mx-auto px-[20px] lg:px-[48px] w-full grid grid-cols-1 lg:grid-cols-12 gap-space-xl items-center relative z-10"
+          >
+            <div
+              class="lg:col-span-6 flex flex-col justify-end items-start gap-space-md"
+            >
+              <div
+                class="inline-flex items-center gap-space-xs px-space-sm py-space-xs bg-surface-container-high rounded text-caption text-primary"
+              >
+                <span
+                  class="material-symbols-outlined text-[16px]"
+                  style="font-variation-settings: &quot;FILL&quot; 1"
+                  >star</span
+                >
+                <span>Heritage Mithai &amp; Dining Since 1974</span>
+              </div>
+              <h1 class="font-headline-hero text-headline-hero text-on-surface">
+                Sweets, the way they have always been made.
+              </h1>
+              <p class="font-body text-body text-on-surface-variant max-w-lg">
+                Sweets, a restaurant, a bakery and namkeen under one roof.
+                Crafted with pure desi ghee, organic khoya, and generations of
+                unwavering devotion.
+              </p>
+              <div class="flex flex-wrap items-center gap-space-md mt-space-sm">
+                <a
+                  class="px-space-lg py-space-sm bg-primary text-on-primary font-button text-button rounded hover:bg-primary-container transition-colors shadow-sm"
+                  data-path="sweets"
+                  href="#"
+                >
+                  Browse sweets
+                </a>
+                <a
+                  class="flex items-center gap-space-xs text-primary font-button text-button hover:underline"
+                  href="tel:+919876543210"
+                >
+                  <span class="material-symbols-outlined text-[20px]"
+                    >call</span
+                  >
+                  Call the shop
+                </a>
+              </div>
+            </div>
+            <div
+              class="lg:col-span-6 flex flex-col items-center lg:items-end justify-center relative"
+            >
+              <div
+                class="relative w-full max-w-[460px] aspect-[4/5] rounded-t-[230px] rounded-b-xl overflow-hidden shadow-xl bg-surface-container"
+              >
+                <div
+                  class="w-full h-full bg-cover bg-center"
+                  data-alt="A magnificent artistic display of traditional Indian sweets including silver-leafed Kaju Katli, golden Motichoor Ladoos, and rich saffron Peda arranged on an antique brass thali under warm ambient lighting, evoking a heritage sweet shop atmosphere."
+                  style="
+                    background-image: url(&quot;https://lh3.googleusercontent.com/aida-public/AB6AXuCSoxmBw0P-8MFdj8rxjB_KK5YK8MtXS_ynD2Y7hcLQ8KuurZALBKMbieKQu3sIJjHnKmgM5kyoXq265G-1f5DAS-A5y8wy7hMbD-Sk633IK4or2HFJ5w9tOA4XIxPVmYxHbolQKe_mdtteq8zrlwZUvQlAEUPsmTGDW31_nEHG_3gANTPdZ1sO9iWu7pdPU-oCRSprc9rZ-_vvaJKa-OT4jZh2xwXYs96sQE7aTM0Tp4m13BkiNbkq&quot;);
+                  "
+                ></div>
+                <div
+                  class="absolute inset-0 bg-gradient-to-t from-maroon/60 via-transparent to-transparent"
+                ></div>
+              </div>
+              <span
+                class="font-headline-lg text-primary mt-space-md tracking-wider italic text-center lg:text-right"
+              >
+                "Happiness is also Sweet"
+              </span>
+            </div>
+          </div>
+        </section>
+        <!-- S2: Four Houses Section -->
+        <section
+          class="py-space-xl bg-surface-container-lowest relative overflow-hidden"
+        >
+          <div class="max-w-[1320px] mx-auto px-[20px] lg:px-[48px]">
+            <div
+              class="flex flex-col md:flex-row justify-between items-start md:items-end mb-space-xl gap-space-md"
+            >
+              <div>
+                <span
+                  class="text-caption uppercase tracking-widest text-antique-gold block mb-space-xs"
+                  >Our Pillars</span
+                >
+                <h2 class="font-headline-lg text-headline-lg text-on-surface">
+                  Four Houses of Taste
+                </h2>
+              </div>
+              <p
+                class="font-body text-caption text-on-surface-variant max-w-sm"
+              >
+                Explore our specialized counters, each dedicated to perfecting a
+                unique culinary tradition.
+              </p>
+            </div>
+            <div
+              class="grid grid-cols-1 lg:grid-cols-12 gap-space-xl items-center"
+            >
+              <div class="lg:col-span-5 flex flex-col gap-space-md">
+                <div
+                  class="group cursor-pointer p-space-md rounded transition-all bg-surface-container-low hover:bg-surface-container border-l-4 border-primary"
+                >
+                  <div class="flex items-center justify-between">
+                    <span class="font-headline-md text-headline-md text-primary"
+                      >Sweets</span
+                    >
+                    <span class="material-symbols-outlined text-primary"
+                      >arrow_forward</span
+                    >
+                  </div>
+                  <p
+                    class="font-body text-caption text-on-surface-variant mt-space-xs"
+                  >
+                    Pure desi ghee mithai, silver-foiled barfis, and rich
+                    seasonal halwas made daily.
+                  </p>
+                </div>
+                <div
+                  class="group cursor-pointer p-space-md rounded transition-all hover:bg-surface-container-low border-l-4 border-transparent hover:border-antique-gold"
+                >
+                  <div class="flex items-center justify-between">
+                    <span
+                      class="font-headline-md text-headline-md text-on-surface"
+                      >Restaurant</span
+                    >
+                    <span
+                      class="material-symbols-outlined text-on-surface-variant"
+                      >arrow_forward</span
+                    >
+                  </div>
+                  <p
+                    class="font-body text-caption text-on-surface-variant mt-space-xs"
+                  >
+                    Authentic North Indian thalis, stuffed tandoori parathas,
+                    and rich gravies.
+                  </p>
+                </div>
+                <div
+                  class="group cursor-pointer p-space-md rounded transition-all hover:bg-surface-container-low border-l-4 border-transparent hover:border-antique-gold"
+                >
+                  <div class="flex items-center justify-between">
+                    <span
+                      class="font-headline-md text-headline-md text-on-surface"
+                      >Bakery</span
+                    >
+                    <span
+                      class="material-symbols-outlined text-on-surface-variant"
+                      >arrow_forward</span
+                    >
+                  </div>
+                  <p
+                    class="font-body text-caption text-on-surface-variant mt-space-xs"
+                  >
+                    Eggless rusks, butter cookies, and fresh cream celebration
+                    cakes.
+                  </p>
+                </div>
+                <div
+                  class="group cursor-pointer p-space-md rounded transition-all hover:bg-surface-container-low border-l-4 border-transparent hover:border-antique-gold"
+                >
+                  <div class="flex items-center justify-between">
+                    <span
+                      class="font-headline-md text-headline-md text-on-surface"
+                      >Namkeen</span
+                    >
+                    <span
+                      class="material-symbols-outlined text-on-surface-variant"
+                      >arrow_forward</span
+                    >
+                  </div>
+                  <p
+                    class="font-body text-caption text-on-surface-variant mt-space-xs"
+                  >
+                    Crisp mathri, spicy mixture, and crunchy sev fried in pure
+                    oils.
+                  </p>
+                </div>
+              </div>
+              <div class="lg:col-span-7 grid grid-cols-2 gap-space-md">
+                <div
+                  class="aspect-[3/4] rounded-t-[150px] rounded-b-xl overflow-hidden shadow-lg translate-y-4"
+                >
+                  <div
+                    class="w-full h-full bg-cover bg-center"
+                    data-alt="Close up of traditional Indian mithai boxes being packed with fresh sweets in an artisanal sweet shop setting with warm golden illumination."
+                    style="
+                      background-image: url(&quot;https://lh3.googleusercontent.com/aida-public/AB6AXuCfRyaPmHFBGZdCRhofLSu9WQnp01F38X3tdykjU4-2kg0Ry15lwtCKYd29AjQ4akYtSkw2ugLxpwK6E6lCMT1IkuvneMpKt2TWUUliwMgpbY5oDzG6AEZfdlCCZw9UKwM6o9WmSMn3bSk8Jvt_btz-6H-UNcAVhWnLs_QytrdU5xS-fjiozPXdvj7Yh_zJsdXgxQuPvRLam72qsKRZiJAc3rN8pRfhGf4DhxVJXw_jhMewpuA7SwrW&quot;);
+                    "
+                  ></div>
+                </div>
+                <div
+                  class="aspect-[3/4] rounded-t-[150px] rounded-b-xl overflow-hidden shadow-lg -translate-y-4"
+                >
+                  <div
+                    class="w-full h-full bg-cover bg-center"
+                    data-alt="Chef crafting traditional crispy namkeen snacks in a clean, professional kitchen with vintage copper utensils."
+                    style="
+                      background-image: url(&quot;https://lh3.googleusercontent.com/aida-public/AB6AXuAE8yQ4_QC-lSRQwpgbDwLtRFrkztcbEeMais98I5yWdltamNYa8QOJ-eIxvC6xSwOFFUGOoM74dA4H_wBf223jwwaZadzb4cBN1E9_wF1H9hmyZCnOI3EccpLZSCc221NsqZqgYIOwnJbkGQTjLvlRavx2V5fa7hND9veh9LbmXpgnhmsta8HpfvfnCYaFkVScoXKlNJlzA5AbK9q_crxl_DOIJNd5PcROw3IPYPtulKMEzCEaWXMa&quot;);
+                    "
+                  ></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+        <!-- S3: Bestsellers Section -->
+        <section class="py-space-xl bg-surface">
+          <div class="max-w-[1320px] mx-auto px-[20px] lg:px-[48px]">
+            <div class="flex items-end justify-between mb-space-lg">
+              <div>
+                <span
+                  class="text-caption uppercase tracking-widest text-antique-gold block mb-space-xs"
+                  >Customer Favorites</span
+                >
+                <h2 class="font-headline-lg text-headline-lg text-on-surface">
+                  Bestsellers
+                </h2>
+              </div>
+              <a
+                class="text-button text-primary hover:underline flex items-center gap-space-xs"
+                data-path="sweets"
+                href="#"
+              >
+                See all sweets
+                <span class="material-symbols-outlined text-[18px]"
+                  >arrow_forward</span
+                >
+              </a>
+            </div>
+            <div
+              class="flex gap-space-lg overflow-x-auto pb-space-lg no-scrollbar"
+            >
+              <!-- Item 1 -->
+              <div
+                class="min-w-[300px] max-w-[300px] flex flex-col gap-space-sm bg-surface-container-low rounded p-space-sm shadow-sm hover:shadow-md transition-shadow"
+              >
+                <div
+                  class="relative w-full aspect-[4/5] rounded-t-[150px] rounded-b-lg overflow-hidden bg-surface-container"
+                >
+                  <div
+                    class="w-full h-full bg-cover bg-center"
+                    data-alt="Pristine diamond-shaped Kaju Katli pieces adorned with edible silver leaf arranged neatly on banana leaf."
+                    style="
+                      background-image: url(&quot;https://lh3.googleusercontent.com/aida-public/AB6AXuAhjnjh37SAuOWIFwM1IKfIwHQ4ZMKz6tO7vbz8kZTXTo9ShjHBzfVmvZdM34fsYTYzFQ2HPdm6j62FbZ8e2NRxilm_1-qVC822EH-KSOv9lnUNBD9Qgs29aeJp94iosHSJlr65BuOAKZwE4iRLXQLlZ5HX6n5ts_vguPEyFMJ1f2VlRqN_VOQCR9PeigThY3lrf9HtV-A6z7CfkeMGK05jMupHHcja9mblXZQ_XS8lowsjIVHGWfVu&quot;);
+                    "
+                  ></div>
+                  <span
+                    class="absolute top-2 left-2 w-4 h-4 bg-leaf rounded-sm flex items-center justify-center"
+                    title="Vegetarian"
+                  >
+                    <span class="w-2 h-2 rounded-full bg-white"></span>
+                  </span>
+                  <span
+                    class="absolute top-2 right-2 px-space-xs py-0.5 bg-primary text-on-primary text-[10px] font-bold rounded uppercase tracking-wider"
+                    >Bestseller</span
+                  >
+                </div>
+                <div class="flex flex-col gap-space-xs pt-space-xs">
+                  <span
+                    class="font-product-name text-product-name text-on-surface"
+                    >Kaju Katli (Silver Foil)</span
+                  >
+                  <div class="flex items-center justify-between">
+                    <span class="font-price text-price text-primary"
+                      >₹ 480 / 500g</span
+                    >
+                    <button
+                      class="px-space-md py-space-xs bg-primary text-on-primary font-button text-caption rounded hover:bg-primary-container transition-colors"
+                    >
+                      Add
+                    </button>
+                  </div>
+                </div>
+              </div>
+              <!-- Item 2 -->
+              <div
+                class="min-w-[300px] max-w-[300px] flex flex-col gap-space-sm bg-surface-container-low rounded p-space-sm shadow-sm hover:shadow-md transition-shadow translate-y-4"
+              >
+                <div
+                  class="relative w-full aspect-[4/5] rounded-t-[150px] rounded-b-lg overflow-hidden bg-surface-container"
+                >
+                  <div
+                    class="w-full h-full bg-cover bg-center"
+                    data-alt="Golden orange Motichoor Ladoos glistening with pure ghee, garnished with melon seeds."
+                    style="
+                      background-image: url(&quot;https://lh3.googleusercontent.com/aida-public/AB6AXuDL_FwV8alijymuLlmAZHiWdK78509cueBLqykp2IPpvOMuewo9R8lLAytZrhnHjnuouiggSvYV8p0kicFE0ZGQZ-JhQ7Tcure0i_UlwlIdbDExe5BZ62YsWvNeDXWY8B3ICyzNUisXK7wJGSwBHiXWCREiNWWCQ4I61BCd9piC5ipB4FHr2reynDbBQspJgeBcbs0Mza5tLiRE5GwX-BE0cehDgXZnY_wqkqTtqo0HZUHmzBKawCUV&quot;);
+                    "
+                  ></div>
+                  <span
+                    class="absolute top-2 left-2 w-4 h-4 bg-leaf rounded-sm flex items-center justify-center"
+                    title="Vegetarian"
+                  >
+                    <span class="w-2 h-2 rounded-full bg-white"></span>
+                  </span>
+                </div>
+                <div class="flex flex-col gap-space-xs pt-space-xs">
+                  <span
+                    class="font-product-name text-product-name text-on-surface"
+                    >Motichoor Ladoo</span
+                  >
+                  <div class="flex items-center justify-between">
+                    <span class="font-price text-price text-primary"
+                      >₹ 350 / 500g</span
+                    >
+                    <button
+                      class="px-space-md py-space-xs bg-primary text-on-primary font-button text-caption rounded hover:bg-primary-container transition-colors"
+                    >
+                      Add
+                    </button>
+                  </div>
+                </div>
+              </div>
+              <!-- Item 3 -->
+              <div
+                class="min-w-[300px] max-w-[300px] flex flex-col gap-space-sm bg-surface-container-low rounded p-space-sm shadow-sm hover:shadow-md transition-shadow"
+              >
+                <div
+                  class="relative w-full aspect-[4/5] rounded-t-[150px] rounded-b-lg overflow-hidden bg-surface-container"
+                >
+                  <div
+                    class="w-full h-full bg-cover bg-center"
+                    data-alt="Traditional Mathura Peda sprinkled with cardamom powder and roasted nuts on a clay plate."
+                    style="
+                      background-image: url(&quot;https://lh3.googleusercontent.com/aida-public/AB6AXuC1Mu_52V-3NVdQikiFT1klXx3B0z9sp0EP60g5qpaU960PN2ioEgBO-vVn3FnIcJQIXYv87QgHyvTZILt_KienESwZ-en1SmxhUN-RrnvY298ZP294VOKdPhPSLXX8i_K1B10psWhpV1BNnmRf8vWFyTTb8N9zOhCRB0NFCXZ6_NzXUSYB_PKs0Nj7HVszKvMMPGe5cwaTwnGOTu8ny_MmjWT6v58BxfvnMZQCxOR2YV7g9hJkOI7l&quot;);
+                    "
+                  ></div>
+                  <span
+                    class="absolute top-2 left-2 w-4 h-4 bg-leaf rounded-sm flex items-center justify-center"
+                    title="Vegetarian"
+                  >
+                    <span class="w-2 h-2 rounded-full bg-white"></span>
+                  </span>
+                </div>
+                <div class="flex flex-col gap-space-xs pt-space-xs">
+                  <span
+                    class="font-product-name text-product-name text-on-surface"
+                    >Malai Peda</span
+                  >
+                  <div class="flex items-center justify-between">
+                    <span class="font-price text-price text-primary"
+                      >₹ 380 / 500g</span
+                    >
+                    <button
+                      class="px-space-md py-space-xs bg-primary text-on-primary font-button text-caption rounded hover:bg-primary-container transition-colors"
+                    >
+                      Add
+                    </button>
+                  </div>
+                </div>
+              </div>
+              <!-- Item 4 -->
+              <div
+                class="min-w-[300px] max-w-[300px] flex flex-col gap-space-sm bg-surface-container-low rounded p-space-sm shadow-sm hover:shadow-md transition-shadow translate-y-4"
+              >
+                <div
+                  class="relative w-full aspect-[4/5] rounded-t-[150px] rounded-b-lg overflow-hidden bg-surface-container"
+                >
+                  <div
+                    class="w-full h-full bg-cover bg-center"
+                    data-alt="Rich flaky squares of authentic South Indian Mysore Pak dripping with fragrant ghee."
+                    style="
+                      background-image: url(&quot;https://lh3.googleusercontent.com/aida-public/AB6AXuCHf7xG2JRqIgnrg1b6Q5uIAOJpdCUL17IDNPWzQAkTWP1ul_ebtg7SBVVxcQ5NSU7vj-PaRcnUg91Eca_J7XQv2b5pFPHgvvYcnGnlg7gfsFjbIg8WMOMyUH-8QmFOBGzEWtpD_uNuq-9RArEAQ0K0SjNYIvmkwV3ULJqEe3CUwHd-beWRGhdgAqQXlhNR8WA2WdMLXgg1jPl-su74_h37HAguqMWGYDklOKc29GUr5aEdXwjkv7hB&quot;);
+                    "
+                  ></div>
+                  <span
+                    class="absolute top-2 left-2 w-4 h-4 bg-leaf rounded-sm flex items-center justify-center"
+                    title="Vegetarian"
+                  >
+                    <span class="w-2 h-2 rounded-full bg-white"></span>
+                  </span>
+                </div>
+                <div class="flex flex-col gap-space-xs pt-space-xs">
+                  <span
+                    class="font-product-name text-product-name text-on-surface"
+                    >Ghee Mysore Pak</span
+                  >
+                  <div class="flex items-center justify-between">
+                    <span class="font-price text-price text-primary"
+                      >₹ 420 / 500g</span
+                    >
+                    <button
+                      class="px-space-md py-space-xs bg-primary text-on-primary font-button text-caption rounded hover:bg-primary-container transition-colors"
+                    >
+                      Add
+                    </button>
+                  </div>
+                </div>
+              </div>
+              <!-- Item 5 -->
+              <div
+                class="min-w-[300px] max-w-[300px] flex flex-col gap-space-sm bg-surface-container-low rounded p-space-sm shadow-sm hover:shadow-md transition-shadow"
+              >
+                <div
+                  class="relative w-full aspect-[4/5] rounded-t-[150px] rounded-b-lg overflow-hidden bg-surface-container"
+                >
+                  <div
+                    class="w-full h-full bg-cover bg-center"
+                    data-alt="Spongy white Rasgullas soaked in light rosewater cardamom syrup inside a glass bowl."
+                    style="
+                      background-image: url(&quot;https://lh3.googleusercontent.com/aida-public/AB6AXuAPhtyfv_4wRv8izNcPNuRgQ4__OJDUVAND5CtXyKf4RqlI-V2_tc0N72ESdgPsZNE3hzoUm4agO4YHZvFvzyPcc_KmDHEYE_mE-Je-WSAOVN1JmBUJ0SerJ88u05s3AYbzGPO-pjkiLlBHSmK0xFixWxRfH9-lmw1ujc2_toogJpXX4oz4aXzF2M1IOr2SCh1A5X3FHzu3UK90aCgnQ9m3Qt1184PPxp4a7nllUFMZBmZLT0SFu_ut&quot;);
+                    "
+                  ></div>
+                  <span
+                    class="absolute top-2 left-2 w-4 h-4 bg-leaf rounded-sm flex items-center justify-center"
+                    title="Vegetarian"
+                  >
+                    <span class="w-2 h-2 rounded-full bg-white"></span>
+                  </span>
+                </div>
+                <div class="flex flex-col gap-space-xs pt-space-xs">
+                  <span
+                    class="font-product-name text-product-name text-on-surface"
+                    >Bengali Rasgulla</span
+                  >
+                  <div class="flex items-center justify-between">
+                    <span class="font-price text-price text-primary"
+                      >₹ 280 / 10 pcs</span
+                    >
+                    <button
+                      class="px-space-md py-space-xs bg-primary text-on-primary font-button text-caption rounded hover:bg-primary-container transition-colors"
+                    >
+                      Add
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+        <!-- S4: Quiet Offer Row -->
+        <section class="py-space-md bg-surface-container-low">
+          <div class="max-w-[1320px] mx-auto px-[20px] lg:px-[48px]">
+            <div
+              class="flex flex-col md:flex-row items-center justify-between bg-surface p-space-lg rounded shadow-sm gap-space-md"
+            >
+              <div class="flex items-center gap-space-md">
+                <div
+                  class="w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center text-primary"
+                >
+                  <span class="material-symbols-outlined text-[24px]"
+                    >redeem</span
+                  >
+                </div>
+                <div>
+                  <span
+                    class="font-headline-md text-headline-md text-on-surface block"
+                    >Festive Gift Boxes</span
+                  >
+                  <p class="font-body text-caption text-on-surface-variant">
+                    Flat 10% off on all assorted mithai boxes above 1 kg.
+                    Perfect for celebrations.
+                  </p>
+                </div>
+              </div>
+              <a
+                class="px-space-lg py-space-xs bg-secondary text-on-secondary font-button text-button rounded hover:bg-secondary-container transition-colors"
+                data-path="sweets"
+                href="#"
+              >
+                Claim Offer
+              </a>
+            </div>
+          </div>
+        </section>
+        <!-- S5: Legacy Reveal Section -->
+        <section class="py-space-xl bg-surface relative">
+          <div class="max-w-[1320px] mx-auto px-[20px] lg:px-[48px]">
+            <div
+              class="relative rounded-xl overflow-hidden shadow-2xl min-h-[500px] flex items-center"
+            >
+              <div
+                class="absolute inset-0 bg-cover bg-center"
+                data-alt="Sepia toned vintage photograph of the original Shiv Mishthan Bhandar storefront in 1974 with wooden counters and brass scales."
+                style="
+                  background-image: url(&quot;https://lh3.googleusercontent.com/aida-public/AB6AXuBdUXSEokRJajrjK1zNREAY2SQYOGOpc0JBWOPneo-78vO-4PFQbwB4MHqtSo7bTp3urkSMLPdcHoPlSAsOxDo2nvKEPjo3aFEdniz8oKeWq-P9ZXhMun__JN1TzqC4A3JB7-X0KIwFEkNR8nXqF6aExSOoZS4hhXKBjBu3GZgVDz5IMY1Tbs3iXJlODTWw_FEJ3TErEt3d7jFc49JWCqhkoZQeIwVbNNIvCyY1sETxd5yt5vxWrorS&quot;);
+                "
+              ></div>
+              <div
+                class="absolute inset-0 bg-maroon/80 mix-blend-multiply"
+              ></div>
+              <div
+                class="absolute inset-0 bg-gradient-to-r from-maroon/90 via-maroon/60 to-transparent"
+              ></div>
+              <div
+                class="relative z-10 p-space-xl max-w-2xl flex flex-col items-start gap-space-md text-ivory"
+              >
+                <span
+                  class="text-caption uppercase tracking-widest text-light-gold"
+                  >Our Heritage</span
+                >
+                <h2 class="font-headline-hero text-headline-lg text-ivory">
+                  A family shop, still run like one.
+                </h2>
+                <p class="font-body text-body text-parchment/90">
+                  Founded over five decades ago with a single copper kadhai and
+                  a commitment to absolute purity. Today, our recipes remain
+                  unchanged, our khoya is still sourced fresh every morning, and
+                  every customer is greeted like family.
+                </p>
+                <a
+                  class="mt-space-sm px-space-lg py-space-sm bg-light-gold text-maroon font-button text-button rounded hover:bg-ivory transition-colors"
+                  data-path="about"
+                  href="#"
+                >
+                  Read our story
+                </a>
+              </div>
+            </div>
+          </div>
+        </section>
+        <!-- S6: How to Order Section -->
+        <section class="py-space-xl bg-surface-container-low">
+          <div class="max-w-[1320px] mx-auto px-[20px] lg:px-[48px]">
+            <div class="text-center max-w-xl mx-auto mb-space-xl">
+              <span
+                class="text-caption uppercase tracking-widest text-antique-gold block mb-space-xs"
+                >Simple Process</span
+              >
+              <h2 class="font-headline-lg text-headline-lg text-on-surface">
+                How to Order
+              </h2>
+              <p
+                class="font-body text-caption text-on-surface-variant mt-space-xs"
+              >
+                Get your favorite sweets and meals delivered fresh to your
+                doorstep or ready for pickup.
+              </p>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-space-xl relative">
+              <div
+                class="flex flex-col items-center text-center gap-space-md relative z-10"
+              >
+                <div
+                  class="w-16 h-16 rounded-full bg-primary text-on-primary flex items-center justify-center font-headline-md text-xl shadow-md"
+                >
+                  1
+                </div>
+                <h3 class="font-headline-md text-headline-md text-on-surface">
+                  Pick what you like
+                </h3>
+                <p class="font-body text-caption text-on-surface-variant">
+                  Browse our extensive catalog of sweets, restaurant dishes,
+                  bakery items, and namkeen.
+                </p>
+              </div>
+              <div
+                class="flex flex-col items-center text-center gap-space-md relative z-10"
+              >
+                <div
+                  class="w-16 h-16 rounded-full bg-primary text-on-primary flex items-center justify-center font-headline-md text-xl shadow-md"
+                >
+                  2
+                </div>
+                <h3 class="font-headline-md text-headline-md text-on-surface">
+                  Send your order on WhatsApp
+                </h3>
+                <p class="font-body text-caption text-on-surface-variant">
+                  Click our WhatsApp button to share your cart instantly with
+                  our shop manager.
+                </p>
+              </div>
+              <div
+                class="flex flex-col items-center text-center gap-space-md relative z-10"
+              >
+                <div
+                  class="w-16 h-16 rounded-full bg-primary text-on-primary flex items-center justify-center font-headline-md text-xl shadow-md"
+                >
+                  3
+                </div>
+                <h3 class="font-headline-md text-headline-md text-on-surface">
+                  We confirm and prepare
+                </h3>
+                <p class="font-body text-caption text-on-surface-variant">
+                  We verify your items and freshly pack them for prompt delivery
+                  or pickup.
+                </p>
+              </div>
+            </div>
+          </div>
+        </section>
+      </div>
+    </main>
+    <!-- Floating Actions -->
+    <div class="fixed bottom-6 right-6 z-40 flex flex-col gap-space-sm">
+      <a
+        aria-label="WhatsApp"
+        class="w-12 h-12 rounded-full bg-leaf text-white flex items-center justify-center shadow-lg hover:scale-105 transition-transform"
+        href="https://whatsapp.com"
+        target="_blank"
+      >
+        <span class="material-symbols-outlined text-[24px]">chat</span>
+      </a>
+      <a
+        aria-label="Call Us"
+        class="w-12 h-12 rounded-full bg-primary text-on-primary flex items-center justify-center shadow-lg hover:scale-105 transition-transform"
+        href="tel:+919876543210"
+      >
+        <span class="material-symbols-outlined text-[24px]">call</span>
+      </a>
+    </div>
+    <footer class="w-full bg-maroon text-ivory pt-space-xl pb-space-lg">
+      <div class="max-w-[1320px] mx-auto px-[20px] lg:px-[48px]">
+        <div
+          class="grid grid-cols-1 md:grid-cols-4 gap-space-xl pb-space-xl border-b border-outline/30"
+        >
+          <div class="flex flex-col gap-space-md">
+            <span class="font-headline-md text-light-gold"
+              >Shiv Mishthan Bhandar</span
+            >
+            <p class="text-caption text-parchment/80">
+              Serving pure heritage mithai, authentic restaurant dining, and
+              exquisite bakery treats crafted with authentic ghee and devotion.
+            </p>
+          </div>
+          <div class="flex flex-col gap-space-sm">
+            <span class="text-button text-light-gold uppercase tracking-wider"
+              >Quick Links</span
+            >
+            <a
+              class="text-caption text-parchment/80 hover:text-ivory"
+              data-path="sweets"
+              href="#"
+              >Sweets Collection</a
+            >
+            <a
+              class="text-caption text-parchment/80 hover:text-ivory"
+              data-path="restaurant"
+              href="#"
+              >Restaurant Menu</a
+            >
+            <a
+              class="text-caption text-parchment/80 hover:text-ivory"
+              data-path="bakery"
+              href="#"
+              >Artisan Bakery</a
+            >
+            <a
+              class="text-caption text-parchment/80 hover:text-ivory"
+              data-path="namkeen"
+              href="#"
+              >Traditional Namkeen</a
+            >
+          </div>
+          <div class="flex flex-col gap-space-sm">
+            <span class="text-button text-light-gold uppercase tracking-wider"
+              >Contact Us</span
+            >
+            <span class="text-caption text-parchment/80"
+              >Main Bazaar, Heritage Chowk, City - 110001</span
+            >
+            <span class="text-caption text-parchment/80"
+              >Phone: +91 98765 43210</span
+            >
+            <span class="text-caption text-parchment/80"
+              >Email: care@shivmishthan.com</span
+            >
+          </div>
+          <div class="flex flex-col gap-space-sm">
+            <span class="text-button text-light-gold uppercase tracking-wider"
+              >FSSAI License</span
+            >
+            <span class="text-caption text-parchment/80"
+              >Lic. No. 10012021000345</span
+            >
+            <p class="text-caption text-parchment/60 mt-space-xs">
+              Committed to highest standards of food safety and hygiene.
+            </p>
+          </div>
+        </div>
+        <div class="pt-space-md text-center text-caption text-parchment/60">
+          © 2024 Shiv Mishthan Bhandar. All rights reserved.
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>
