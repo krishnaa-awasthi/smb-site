@@ -47,9 +47,10 @@ export function createCatalogue(
   const cat = getCategory(category);
 
   if (!cat) {
-    throw new Error(`Unknown category: ${category}`);
-  }
-
+  throw new Error(
+    `Unknown category: ${category}`,
+  );
+}
   let order = 0;
 
   function make(

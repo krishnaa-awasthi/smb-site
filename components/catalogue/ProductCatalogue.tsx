@@ -179,12 +179,12 @@ export function ProductCatalogue({
        */
       if (query) {
         const searchable = [
-          product.name,
-          product.shortDescription,
-          ...product.tags,
-        ]
-          .join(' ')
-          .toLowerCase();
+  product.name,
+  product.shortDescription,
+  ...(product.tags ?? []),
+]
+  .join(' ')
+  .toLowerCase();
 
         if (!searchable.includes(query)) {
           return false;
