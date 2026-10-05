@@ -44,13 +44,16 @@ export function createCatalogue(
   category: CategorySlug,
   diet?: Diet,
 ) {
-  const cat = getCategory(category);
+const cat = getCategory(category);
 
-  if (!cat) {
+if (!cat) {
   throw new Error(
     `Unknown category: ${category}`,
   );
 }
+
+const subcategories = cat.subcategories;
+
   let order = 0;
 
   function make(
@@ -60,9 +63,9 @@ export function createCatalogue(
     extra: Partial<Product> = {},
     options: Options = {},
   ): Product {
-    const sub = cat.subcategories.find(
-      (s) => s.slug === subcategory,
-    );
+    const sub = subcategories.find(
+  (s) => s.slug === subcategory,
+);
 
     if (!sub) {
       throw new Error(
