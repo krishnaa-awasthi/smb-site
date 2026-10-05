@@ -5,12 +5,16 @@ import Link from 'next/link';
 import { useMemo, useState } from 'react';
 import {
   ChevronDown,
+  Minus,
+  Plus,
   Search,
+  ShoppingBag,
   SlidersHorizontal,
   X,
 } from 'lucide-react';
 
 import type { Product, PriceBand } from '@/types';
+import { useCart } from '@/components/cart/CartProvider';
 
 interface ProductCatalogueProps {
   products: Product[];
@@ -46,20 +50,64 @@ function ProductCard({
   product: Product;
   basePath: string;
 }) {
+  const { lines, addToCart, updateQuantity } = useCart();
+
   const image = product.images[0];
   const variant = product.variants[0];
 
+  const currentLine = lines.find(
+    (line) =>
+      line.productId === product.id &&
+      line.variantId === variant?.id,
+  );
+
+  const quantity = currentLine?.qty ?? 0;
+
+  function handleAddToCart() {
+    if (!product.available || !variant) return;
+
+    addToCart(
+      product.id,
+      variant.id,
+      1,
+    );
+  }
+
+  function handleDecrease() {
+    if (!currentLine) return;
+
+    updateQuantity(
+      currentLine.key,
+      currentLine.qty - 1,
+    );
+  }
+
+  function handleIncrease() {
+    if (!currentLine) return;
+
+    if (currentLine.qty >= 20) return;
+
+    updateQuantity(
+      currentLine.key,
+      currentLine.qty + 1,
+    );
+  }
+
   return (
-    <Link
-      href={`${basePath}/${product.slug}`}
-      className="group block"
-    >
-      <article>
+    <article className="group block">
+      {/* Product image + information */}
+      <Link
+        href={`${basePath}/${product.slug}`}
+        className="block"
+      >
         <div className="relative aspect-square overflow-hidden rounded-ctl bg-surface-mid">
           {image?.src ? (
             <Image
               src={image.src}
-              alt={image.alt}
+              alt={
+                image.alt ||
+                product.name
+              }
               fill
               sizes="
                 (max-width: 640px) 50vw,
@@ -67,7 +115,14 @@ function ProductCard({
                 (max-width: 1280px) 25vw,
                 20vw
               "
-              className="object-cover transition-transform duration-500 group-hover:scale-[1.04]"
+              className={[
+                'object-cover',
+                'transition-transform duration-500',
+                'group-hover:scale-[1.04]',
+                !product.available
+                  ? 'opacity-60'
+                  : '',
+              ].join(' ')}
             />
           ) : (
             <div className="flex h-full items-center justify-center px-4 text-center text-sm text-ink-soft">
@@ -96,6 +151,12 @@ function ProductCard({
               Festive
             </span>
           )}
+
+          {!product.available && (
+            <span className="absolute inset-x-0 bottom-0 bg-ink/70 px-3 py-2 text-center text-xs font-medium text-ivory">
+              Currently unavailable
+            </span>
+          )}
         </div>
 
         <div className="pt-3">
@@ -114,9 +175,11 @@ function ProductCard({
               </span>
             ) : (
               <span className="text-sm font-semibold text-ink">
-                {formatINR(variant.price)}
+                {formatINR(
+                  variant?.price ?? 0,
+                )}
 
-                {variant.label && (
+                {variant?.label && (
                   <span className="ml-1 font-normal text-ink-soft">
                     / {variant.label}
                   </span>
@@ -132,8 +195,69 @@ function ProductCard({
               </p>
             )}
         </div>
-      </article>
-    </Link>
+      </Link>
+
+      {/* Cart controls */}
+      <div className="mt-4">
+        {!product.available ? (
+          <button
+            type="button"
+            disabled
+            className="flex min-h-11 w-full cursor-not-allowed items-center justify-center rounded-ctl border border-ink/10 bg-ink/5 px-4 text-sm text-ink-soft"
+          >
+            Currently unavailable
+          </button>
+        ) : quantity === 0 ? (
+          <button
+            type="button"
+            onClick={handleAddToCart}
+            className="flex min-h-11 w-full items-center justify-center gap-2 rounded-ctl border border-primary/20 bg-ivory px-4 text-sm font-medium text-primary transition-colors hover:bg-primary hover:text-ivory"
+          >
+            <ShoppingBag
+              aria-hidden="true"
+              size={16}
+              strokeWidth={1.7}
+            />
+
+            Add to cart
+          </button>
+        ) : (
+          <div className="flex min-h-11 w-full items-center justify-between overflow-hidden rounded-ctl border border-primary bg-primary text-ivory">
+            <button
+              type="button"
+              onClick={handleDecrease}
+              aria-label={`Decrease ${product.name} quantity`}
+              className="flex h-11 w-11 items-center justify-center transition-colors hover:bg-primary/80"
+            >
+              <Minus
+                size={16}
+                strokeWidth={2}
+              />
+            </button>
+
+            <span
+              className="flex flex-1 items-center justify-center text-sm font-semibold"
+              aria-live="polite"
+            >
+              {quantity}
+            </span>
+
+            <button
+              type="button"
+              onClick={handleIncrease}
+              disabled={quantity >= 20}
+              aria-label={`Increase ${product.name} quantity`}
+              className="flex h-11 w-11 items-center justify-center transition-colors hover:bg-primary/80 disabled:cursor-not-allowed disabled:opacity-40"
+            >
+              <Plus
+                size={16}
+                strokeWidth={2}
+              />
+            </button>
+          </div>
+        )}
+      </div>
+    </article>
   );
 }
 
@@ -144,93 +268,67 @@ export function ProductCatalogue({
   basePath,
 }: ProductCatalogueProps) {
   const [search, setSearch] = useState('');
-  const [subcategory, setSubcategory] = useState('all');
-  const [priceBand, setPriceBand] = useState('all');
+  const [subcategory, setSubcategory] =
+    useState('all');
+  const [priceBand, setPriceBand] =
+    useState('all');
   const [sort, setSort] =
     useState<SortOption>('recommended');
-  const [filtersOpen, setFiltersOpen] = useState(false);
-
-  /*
-   * Convert the supplied base path into a readable
-   * catalogue name.
-   *
-   * Examples:
-   * /sweets     -> sweets
-   * /restaurant -> restaurant
-   * /namkeen    -> namkeen
-   * /bakery     -> bakery
-   */
-  const catalogueName =
-    basePath
-      .split('/')
-      .filter(Boolean)
-      .pop()
-      ?.replace(/-/g, ' ') ?? 'products';
+  const [filtersOpen, setFiltersOpen] =
+    useState(false);
 
   const filteredProducts = useMemo(() => {
     const query = search.trim().toLowerCase();
 
-    const result = products.filter((product) => {
-      /*
-       * Search across:
-       * - product name
-       * - subcategory
-       * - tags
-       */
-      if (query) {
-        const searchable = [
-  product.name,
-  product.shortDescription,
-  ...(product.tags ?? []),
-]
-  .join(' ')
-  .toLowerCase();
+    const result = products.filter(
+      (product) => {
+        if (query) {
+          const searchable = [
+            product.name,
+            product.shortDescription,
+            ...product.tags,
+          ]
+            .join(' ')
+            .toLowerCase();
 
-        if (!searchable.includes(query)) {
+          if (!searchable.includes(query)) {
+            return false;
+          }
+        }
+
+        if (
+          subcategory !== 'all' &&
+          product.subcategory !== subcategory
+        ) {
           return false;
         }
-      }
 
-      /*
-       * Subcategory filter
-       */
-      if (
-        subcategory !== 'all' &&
-        product.subcategory !== subcategory
-      ) {
-        return false;
-      }
+        if (priceBand !== 'all') {
+          const band = priceBands.find(
+            (item) => item.id === priceBand,
+          );
 
-      /*
-       * Price filter
-       */
-      if (priceBand !== 'all') {
-        const band = priceBands.find(
-          (item) => item.id === priceBand,
-        );
+          if (band) {
+            const price =
+              getDefaultPrice(product);
 
-        if (band) {
-          const price = getDefaultPrice(product);
+            if (price < band.min) {
+              return false;
+            }
 
-          if (price < band.min) {
-            return false;
-          }
-
-          if (
-            band.max !== undefined &&
-            price >= band.max
-          ) {
-            return false;
+            if (
+              band.max !== undefined &&
+              price >= band.max
+            ) {
+              return false;
+            }
           }
         }
-      }
 
-      return true;
-    });
+        return true;
+      },
+    );
 
-    /*
-     * Sorting
-     */
     result.sort((a, b) => {
       switch (sort) {
         case 'price-low':
@@ -246,11 +344,16 @@ export function ProductCatalogue({
           );
 
         case 'name':
-          return a.name.localeCompare(b.name);
+          return a.name.localeCompare(
+            b.name,
+          );
 
         case 'recommended':
         default:
-          return b.popularity - a.popularity;
+          return (
+            b.popularity -
+            a.popularity
+          );
       }
     });
 
@@ -282,7 +385,9 @@ export function ProductCatalogue({
         <div className="flex min-w-max gap-2">
           <button
             type="button"
-            onClick={() => setSubcategory('all')}
+            onClick={() =>
+              setSubcategory('all')
+            }
             className={[
               'rounded-full border px-4 py-2 text-sm transition-colors',
               subcategory === 'all'
@@ -290,7 +395,7 @@ export function ProductCatalogue({
                 : 'border-ink/15 bg-ivory text-ink hover:border-primary hover:text-primary',
             ].join(' ')}
           >
-            All {catalogueName}
+            All
           </button>
 
           {subcategories.map((item) => (
@@ -330,15 +435,17 @@ export function ProductCatalogue({
               onChange={(event) =>
                 setSearch(event.target.value)
               }
-              placeholder={`Search ${catalogueName}...`}
-              aria-label={`Search ${catalogueName}`}
+              placeholder="Search..."
+              aria-label="Search products"
               className="h-11 w-full rounded-ctl border border-ink/15 bg-ivory pl-9 pr-10 text-sm text-ink outline-none placeholder:text-ink-soft focus:border-primary"
             />
 
             {search && (
               <button
                 type="button"
-                onClick={() => setSearch('')}
+                onClick={() =>
+                  setSearch('')
+                }
                 aria-label="Clear search"
                 className="absolute right-2 top-1/2 flex h-8 w-8 -translate-y-1/2 items-center justify-center text-ink-soft hover:text-ink"
               >
@@ -352,7 +459,6 @@ export function ProductCatalogue({
           </div>
 
           <div className="flex items-center justify-between gap-3">
-            {/* Mobile filters */}
             <button
               type="button"
               onClick={() =>
@@ -375,7 +481,6 @@ export function ProductCatalogue({
               )}
             </button>
 
-            {/* Sort */}
             <div className="relative">
               <select
                 value={sort}
@@ -422,7 +527,6 @@ export function ProductCatalogue({
               : 'hidden lg:grid lg:grid-cols-2',
           ].join(' ')}
         >
-          {/* Subcategory */}
           <label className="block">
             <span className="mb-2 block text-xs font-medium uppercase tracking-wider text-ink-soft">
               Category
@@ -432,7 +536,9 @@ export function ProductCatalogue({
               <select
                 value={subcategory}
                 onChange={(event) =>
-                  setSubcategory(event.target.value)
+                  setSubcategory(
+                    event.target.value,
+                  )
                 }
                 className="h-11 w-full appearance-none rounded-ctl border border-ink/15 bg-ivory px-4 pr-10 text-sm text-ink outline-none focus:border-primary"
               >
@@ -458,7 +564,6 @@ export function ProductCatalogue({
             </div>
           </label>
 
-          {/* Price */}
           <label className="block">
             <span className="mb-2 block text-xs font-medium uppercase tracking-wider text-ink-soft">
               Price
@@ -468,7 +573,9 @@ export function ProductCatalogue({
               <select
                 value={priceBand}
                 onChange={(event) =>
-                  setPriceBand(event.target.value)
+                  setPriceBand(
+                    event.target.value,
+                  )
                 }
                 className="h-11 w-full appearance-none rounded-ctl border border-ink/15 bg-ivory px-4 pr-10 text-sm text-ink outline-none focus:border-primary"
               >
@@ -495,7 +602,6 @@ export function ProductCatalogue({
           </label>
         </div>
 
-        {/* Active filters */}
         {hasActiveFilters && (
           <div className="mt-4 flex flex-wrap items-center gap-2">
             <span className="text-xs text-ink-soft">
@@ -517,13 +623,15 @@ export function ProductCatalogue({
       {/* Results */}
       {filteredProducts.length > 0 ? (
         <div className="grid grid-cols-2 gap-x-4 gap-y-10 sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5">
-          {filteredProducts.map((product) => (
-            <ProductCard
-              key={product.id}
-              product={product}
-              basePath={basePath}
-            />
-          ))}
+          {filteredProducts.map(
+            (product) => (
+              <ProductCard
+                key={product.id}
+                product={product}
+                basePath={basePath}
+              />
+            ),
+          )}
         </div>
       ) : (
         <div className="flex min-h-[300px] flex-col items-center justify-center rounded-ctl border border-dashed border-ink/15 bg-ivory px-6 text-center">
@@ -536,30 +644,24 @@ export function ProductCatalogue({
           </div>
 
           <h3 className="font-display text-2xl text-ink">
-            No {catalogueName} found
+            No products found
           </h3>
 
-          <p className="mt-2 max-w-sm text-sm leading-6 text-ink-soft">
-            Try another search or remove one of the
-            filters.
+          <p className="mt-2 max-w-md text-sm text-ink-soft">
+            Try another search or clear the
+            filters to see more products.
           </p>
 
-          <button
-            type="button"
-            onClick={clearFilters}
-            className="mt-5 rounded-ctl bg-primary px-5 py-2.5 text-sm font-medium text-ivory transition-colors hover:bg-primary/90"
-          >
-            Clear filters
-          </button>
+          {hasActiveFilters && (
+            <button
+              type="button"
+              onClick={clearFilters}
+              className="mt-5 rounded-ctl bg-primary px-5 py-2.5 text-sm font-medium text-ivory"
+            >
+              Clear filters
+            </button>
+          )}
         </div>
-      )}
-
-      {/* Result count */}
-      {filteredProducts.length > 0 && (
-        <p className="mt-10 text-center text-xs text-ink-soft">
-          Showing {filteredProducts.length} of{' '}
-          {products.length} {catalogueName}
-        </p>
       )}
     </div>
   );

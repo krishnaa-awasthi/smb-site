@@ -2,6 +2,8 @@
 
 import Image from 'next/image';
 import Link from 'next/link';
+import { useEffect, useState } from 'react';
+import { useRouter } from 'next/navigation';
 import {
   Minus,
   Plus,
@@ -9,7 +11,6 @@ import {
   Trash2,
   X,
 } from 'lucide-react';
-import { useEffect, useState } from 'react';
 
 import { products } from '@/data/products';
 import { useCart } from '@/components/cart/CartProvider';
@@ -24,6 +25,8 @@ const formatINR = (value: number) =>
 const ANIMATION_DURATION = 280;
 
 export function CartDrawer() {
+  const router = useRouter();
+
   const {
     lines,
     subtotal,
@@ -41,12 +44,14 @@ export function CartDrawer() {
    * We keep it mounted during the closing animation,
    * otherwise React would remove it immediately.
    */
-  const [shouldRender, setShouldRender] = useState(false);
+  const [shouldRender, setShouldRender] =
+    useState(false);
 
   /*
    * Controls the actual CSS animation state.
    */
-  const [isVisible, setIsVisible] = useState(false);
+  const [isVisible, setIsVisible] =
+    useState(false);
 
   useEffect(() => {
     let timeout: number | undefined;
@@ -107,6 +112,11 @@ export function CartDrawer() {
     return null;
   }
 
+  function handleCheckout() {
+    closeCart();
+    router.push('/cart');
+  }
+
   return (
     <div className="fixed inset-0 z-[100]">
       {/* =====================================================
@@ -137,25 +147,8 @@ export function CartDrawer() {
         aria-label="Shopping cart"
         className={[
           'absolute right-0 top-0 flex h-full w-full max-w-md flex-col bg-ivory shadow-2xl',
-
-          /*
-           * Forces the browser to use GPU compositing
-           * for smoother drawer movement.
-           */
           'transform-gpu',
-
-          /*
-           * Premium ease-out curve.
-           */
           'transition-transform duration-[280ms] ease-[cubic-bezier(0.22,1,0.36,1)]',
-
-          /*
-           * Opening:
-           * translate-x-full -> translate-x-0
-           *
-           * Closing:
-           * translate-x-0 -> translate-x-full
-           */
           isVisible
             ? 'translate-x-0'
             : 'translate-x-full',
@@ -415,6 +408,7 @@ export function CartDrawer() {
 
               <button
                 type="button"
+                onClick={handleCheckout}
                 className="mt-4 flex min-h-12 w-full items-center justify-center rounded-ctl bg-primary px-5 text-sm font-medium text-ivory transition-colors hover:bg-primary/90"
               >
                 Proceed to checkout

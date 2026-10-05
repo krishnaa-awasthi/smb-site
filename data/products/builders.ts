@@ -89,9 +89,10 @@ const subcategories = cat.subcategories;
      * and image management stays inside images.ts.
      */
     const productImages = getProductImages({
-      name,
-      slug,
-    });
+  name,
+  slug,
+  category,
+});
 
     return {
       id: `${category}-${slug}`,
