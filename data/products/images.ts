@@ -353,7 +353,7 @@ const exact: Record<string, ProductImage> = {
 
   'crispy-corn': restaurant.snacks,
 
-  'aloo-tikki': restaurant.snacks,
+  
 
   'french-fries': restaurant.snacks,
 
@@ -433,7 +433,7 @@ const exact: Record<string, ProductImage> = {
 
   imarti: sweets.yellowLaddoo,
 
-  'aloo-tikki': namkeen.chaat,
+  
 
   'dahi-bada': namkeen.chaat,
 

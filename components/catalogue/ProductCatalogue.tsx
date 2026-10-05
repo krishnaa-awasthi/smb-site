@@ -283,13 +283,13 @@ export function ProductCatalogue({
     const result = products.filter(
       (product) => {
         if (query) {
-          const searchable = [
-            product.name,
-            product.shortDescription,
-            ...product.tags,
-          ]
-            .join(' ')
-            .toLowerCase();
+const searchable = [
+  product.name,
+  product.shortDescription,
+  ...(product.tags ?? []),
+]
+  .join(' ')
+  .toLowerCase();
 
           if (!searchable.includes(query)) {
             return false;
