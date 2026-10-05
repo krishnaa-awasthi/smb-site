@@ -46,7 +46,7 @@ export function BestsellerCard({ product, offset }: BestsellerCardProps) {
           )}
         </ImageArch>
         {/* Marks sit at the bottom corners: the arch clips the top corners. */}
-        <VegMark diet={product.diet} className="absolute bottom-2 left-2" />
+        {product.diet && <VegMark diet={product.diet} className="absolute bottom-2 left-2" />}
         {product.bestseller && <Badge className="absolute bottom-2 right-2">Bestseller</Badge>}
       </Link>
 
@@ -56,8 +56,8 @@ export function BestsellerCard({ product, offset }: BestsellerCardProps) {
         </Link>
         <div className="flex items-center justify-between gap-2">
           <span className="font-semibold tabular-nums text-primary">
-            {formatINR(variant.price)}{' '}
-            <span className="font-normal text-ink-soft">/ {variant.label}</span>
+            {formatINR(variant.price)}
+            {variant.label && <span className="font-normal text-ink-soft"> / {variant.label}</span>}
           </span>
           <Button
             onClick={handleAdd}

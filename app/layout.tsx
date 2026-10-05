@@ -8,6 +8,8 @@ import { FloatingActions } from '@/components/layout/FloatingActions';
 import { Header } from '@/components/layout/Header';
 import { SmoothScroll } from '@/components/motion/SmoothScroll';
 import { ToastProvider } from '@/components/ui/Toast';
+import { CartProvider } from '@/components/cart/CartProvider';
+import { CartDrawer } from '@/components/cart/CartDrawer';
 
 const marcellus = Marcellus({
   subsets: ['latin'],
@@ -60,14 +62,23 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         </a>
         <CartoucheDefs />
         <ToastProvider>
-          <SmoothScroll>
-            <Header />
-            {/* Offset equals the fixed header height (64 px mobile, 80 px desktop). Pages render their own <main id="main">. */}
-            <div className="pt-16 md:pt-20">{children}</div>
-            <Footer />
-            <FloatingActions />
-          </SmoothScroll>
-        </ToastProvider>
+  <CartProvider>
+    <SmoothScroll>
+      <Header />
+
+      {/* Offset equals the fixed header height */}
+      <div className="pt-16 md:pt-20">
+        {children}
+      </div>
+
+      <Footer />
+      <FloatingActions />
+
+      {/* Global cart drawer */}
+      <CartDrawer />
+    </SmoothScroll>
+  </CartProvider>
+</ToastProvider>
       </body>
     </html>
   );

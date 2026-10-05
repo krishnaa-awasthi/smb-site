@@ -1,14 +1,8 @@
-import type { Category, CategorySlug, PriceBand } from '@/types';
-
-const genericBands: PriceBand[] = [
-  { id: 'u200', label: 'Under ₹200', min: 0, max: 200 },
-  { id: '200-500', label: '₹200 – ₹500', min: 200, max: 500 },
-  { id: '500-1000', label: '₹500 – ₹1,000', min: 500, max: 1000 },
-  { id: '1000p', label: 'Above ₹1,000', min: 1000 },
-];
+import type { Category, CategorySlug } from '@/types';
 
 /**
- * Subcategories and price bands. Sweets follow the client-approved listing design.
+ * Subcategories follow the shop's own product sheet (docs/reference/products-smb-site.csv).
+ * Price bands compare against each product's default (smallest) variant price.
  * Intro lines are DRAFT copy: replace with client-confirmed text (never publish unconfirmed claims).
  */
 export const categories: Category[] = [
@@ -17,15 +11,18 @@ export const categories: Category[] = [
     name: 'Sweets',
     intro: 'Mithai for gifting and for every day.',
     subcategories: [
-      { slug: 'ghee-mithai', name: 'Ghee mithai' },
-      { slug: 'khoya-specials', name: 'Khoya specials' },
-      { slug: 'dry-fruit-sweets', name: 'Dry fruit sweets' },
+      { slug: 'dry-fruits-sweets', name: 'Dry fruits sweets' },
+      { slug: 'desi-ghee-sweets', name: 'Desi ghee sweets' },
       { slug: 'bengali-sweets', name: 'Bengali sweets' },
+      { slug: 'khoya-sweets', name: 'Khoya sweets' },
+      { slug: 'laddo', name: 'Laddo' },
+      { slug: 'gifting', name: 'Gifting' },
     ],
     priceBands: [
-      { id: 'u300', label: 'Under ₹300', min: 0, max: 300 },
-      { id: '300-600', label: '₹300 – ₹600', min: 300, max: 600 },
-      { id: '600p', label: '₹600 and above', min: 600 },
+      { id: 'u100', label: 'Under ₹100', min: 0, max: 100 },
+      { id: '100-199', label: '₹100 to ₹199', min: 100, max: 200 },
+      { id: '200-299', label: '₹200 to ₹299', min: 200, max: 300 },
+      { id: '300p', label: '₹300 and above', min: 300 },
     ],
   },
   {
@@ -33,40 +30,51 @@ export const categories: Category[] = [
     name: 'Restaurant',
     intro: 'Hot meals, chai and chaat, served through the day.',
     subcategories: [
-      { slug: 'breakfast', name: 'Breakfast' },
-      { slug: 'snacks-chaat', name: 'Snacks and chaat' },
-      { slug: 'main-course', name: 'Main course' },
-      { slug: 'thali', name: 'Thali' },
-      { slug: 'beverages', name: 'Beverages' },
-      { slug: 'desserts', name: 'Desserts' },
+      { slug: 'south-indian', name: 'South Indian' },
+      { slug: 'north-indian', name: 'North Indian' },
+      { slug: 'chinese', name: 'Chinese' },
+      { slug: 'pizza', name: 'Pizza' },
+      { slug: 'sandwich', name: 'Sandwich' },
+      { slug: 'burger', name: 'Burger' },
+      { slug: 'snacks', name: 'Snacks' },
+      { slug: 'sweets', name: 'Sweets' },
+      { slug: 'coffee', name: 'Coffee' },
+      { slug: 'drinks', name: 'Drinks' },
+      { slug: 'shakes', name: 'Shakes' },
+      { slug: 'mocktails', name: 'Mocktails' },
+      { slug: 'combo', name: 'Combo' },
     ],
-    priceBands: genericBands,
+    priceBands: [
+      { id: 'u50', label: 'Under ₹50', min: 0, max: 50 },
+      { id: '50-99', label: '₹50 to ₹99', min: 50, max: 100 },
+      { id: '100-149', label: '₹100 to ₹149', min: 100, max: 150 },
+      { id: '150-199', label: '₹150 to ₹199', min: 150, max: 200 },
+      { id: '200p', label: '₹200 and above', min: 200 },
+    ],
   },
   {
     slug: 'bakery',
     name: 'Bakery',
     intro: 'Cakes, pastries and biscuits baked fresh.',
-    subcategories: [
-      { slug: 'cakes', name: 'Cakes' },
-      { slug: 'pastries', name: 'Pastries' },
-      { slug: 'cookies-biscuits', name: 'Cookies and biscuits' },
-      { slug: 'brownies', name: 'Brownies' },
-      { slug: 'breads-puffs', name: 'Breads and puffs' },
-    ],
-    priceBands: genericBands,
+    subcategories: [{ slug: 'bakery-items', name: 'Bakery items' }],
+    // Every bakery item is price on request for now, so there is nothing to filter by price.
+    priceBands: [],
   },
   {
     slug: 'namkeen',
     name: 'Namkeen',
     intro: 'Crisp snacks by the kilo for tea time.',
     subcategories: [
-      { slug: 'sev-bhujia', name: 'Sev and bhujia' },
-      { slug: 'mixtures', name: 'Mixtures' },
-      { slug: 'chips-wafers', name: 'Chips and wafers' },
-      { slug: 'tea-time-snacks', name: 'Tea-time snacks' },
-      { slug: 'papad-sides', name: 'Papad and sides' },
+      { slug: 'snacks', name: 'Snacks' },
+      { slug: 'chaat', name: 'Chaat' },
+      { slug: 'dry-fruits', name: 'Dry fruits' },
     ],
-    priceBands: genericBands,
+    priceBands: [
+      { id: 'u50', label: 'Under ₹50', min: 0, max: 50 },
+      { id: '50-99', label: '₹50 to ₹99', min: 50, max: 100 },
+      { id: '100-199', label: '₹100 to ₹199', min: 100, max: 200 },
+      { id: '200p', label: '₹200 and above', min: 200 },
+    ],
   },
 ];
 

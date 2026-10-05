@@ -4,7 +4,7 @@ export type Badge = 'bestseller' | 'new' | 'festive' | 'seasonal';
 
 export interface Variant {
   id: string; // unique within product, e.g. "500g"
-  label: string; // "500 g", "Half", "1 kg"
+  label: string; // "500 g", "1 plate", "1 pc". Empty string for single-size items with no unit
   price: number; // whole rupees
   mrp?: number; // whole rupees, only if a real strike-through price exists
 }
@@ -16,10 +16,13 @@ export interface Product {
   category: CategorySlug;
   subcategory: string; // subcategory slug, must exist in data/categories.ts for that category
   shortDescription: string; // one line, max ~60 chars
-  description: string;
+  description?: string; // optional: shown only when the shop supplies one
   images: { src: string; alt: string }[]; // 1 to 5
   variants: Variant[]; // at least 1; first is the default
-  diet: Diet;
+  /** Undefined = not declared: no veg/egg mark is shown (the mark is a food-labelling declaration). */
+  diet?: Diet;
+  /** Open-price items: no fixed price. Shown as "Price on request"; customers ask on WhatsApp. Variants hold one entry with price 0. */
+  priceOnRequest?: boolean;
   badges?: Badge[];
   featured?: boolean; // home featured track
   bestseller?: boolean;
