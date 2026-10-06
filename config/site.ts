@@ -32,17 +32,17 @@ export const siteConfig = {
     process.env.NEXT_PUBLIC_BUSINESS_CITY ??
     'Kanpur',
 
-  locality: 'Kalyanpur, Kanpur Nagar', // TODO(client)
+  locality: 'Kalyanpur, Kanpur Nagar',
 
   fullAddress:
     process.env.NEXT_PUBLIC_BUSINESS_ADDRESS ??
     '',
 
-  pincode: '208017', // TODO(client)
+  pincode: '208017',
 
   geo: {
-    lat: '{{LAT}}', // TODO(client)
-    lng: '{{LNG}}', // TODO(client)
+    lat: '26.4998174', 
+    lng: '80.1891839',
   },
 
   mapsUrl:
@@ -76,9 +76,9 @@ export const siteConfig = {
     youtube: '',
   },
 
-  gbpUrl: '', // TODO(client)
+  gbpUrl: '', 
 
-  reviewLink: '', // TODO(client)
+  reviewLink: '',
 
 
   delivery: {
