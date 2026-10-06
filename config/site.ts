@@ -32,13 +32,13 @@ export const siteConfig = {
     process.env.NEXT_PUBLIC_BUSINESS_CITY ??
     'Kanpur',
 
-  locality: '{{LOCALITY}}', // TODO(client)
+  locality: 'Kalyanpur, Kanpur Nagar', // TODO(client)
 
   fullAddress:
     process.env.NEXT_PUBLIC_BUSINESS_ADDRESS ??
     '',
 
-  pincode: '{{PINCODE}}', // TODO(client)
+  pincode: '208017', // TODO(client)
 
   geo: {
     lat: '{{LAT}}', // TODO(client)
@@ -49,41 +49,14 @@ export const siteConfig = {
     process.env.NEXT_PUBLIC_GOOGLE_MAPS_URL ??
     '',
 
-  serviceRadiusKm: 15, // TODO(client): confirm, brief says 15 to 20 km
-
-  servedAreas: [] as string[], // TODO(client)
-
-  // ============================================================
-  // BUSINESS DETAILS
-  // ============================================================
-
+  serviceRadiusKm: 25,
+  servedAreas: [] as string[],
   establishedYear: '1997',
-
   hours: '10 AM - 10 PM',
-
   fssai: 'qwerty123456789',
-
-  
-
-  // ============================================================
-  // CONTACT
-  // ============================================================
-
-  /**
-   * WhatsApp number.
-   *
-   * Expected format:
-   * 919838879168
-   */
   whatsappNumber:
     process.env.NEXT_PUBLIC_WHATSAPP_NUMBER ??
     '',
-
-  /**
-   * Public telephone number.
-   *
-   * Display format can include +91.
-   */
   callNumber:
     process.env.NEXT_PUBLIC_CALL_NUMBER ??
     '',
@@ -91,11 +64,6 @@ export const siteConfig = {
   email:
     process.env.NEXT_PUBLIC_BUSINESS_EMAIL ??
     '',
-
-  // ============================================================
-  // SOCIAL MEDIA
-  // ============================================================
-
   social: {
     instagram:
       process.env.NEXT_PUBLIC_INSTAGRAM_URL ??
@@ -108,17 +76,10 @@ export const siteConfig = {
     youtube: '',
   },
 
-  // ============================================================
-  // GOOGLE BUSINESS PROFILE
-  // ============================================================
-
   gbpUrl: '', // TODO(client)
 
   reviewLink: '', // TODO(client)
 
-  // ============================================================
-  // DELIVERY
-  // ============================================================
 
   delivery: {
     note:
@@ -133,7 +94,8 @@ export const siteConfig = {
     process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID ??
     '',
 
-  gscVerification: '',
+  gscVerification:
+  process.env.NEXT_PUBLIC_GOOGLE_SEARCH_CONSOLE_VERIFICATION ?? '',
 
 } as const;
 
