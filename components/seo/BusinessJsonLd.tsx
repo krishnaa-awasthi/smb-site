@@ -10,25 +10,25 @@ export function BusinessJsonLd() {
     siteConfig.social.facebook,
   ].filter(Boolean);
 
-  const primaryPhone =
-    siteConfig.callNumber || siteConfig.whatsappNumber;
-
   const jsonLd: Record<string, unknown> = {
     '@context': 'https://schema.org',
 
+    // SMB operates as both a physical store and food establishment.
     '@type': ['Store', 'FoodEstablishment'],
 
     '@id': `${baseUrl}/#business`,
-
     name: siteConfig.name,
     url: baseUrl,
 
     description:
-      `${siteConfig.name} is a sweets, bakery, namkeen and family ` +
+      `Shiv Mishthan Bhandar is a sweets, bakery, namkeen and family ` +
       `restaurant business serving customers in ${siteConfig.city}.`,
+
+    telephone: siteConfig.callNumber || siteConfig.whatsappNumber,
 
     logo: `${baseUrl}/brand/logo.png`,
 
+    // Use the actual site/brand image that is already deployed.
     image: `${baseUrl}/images/hero/mithai-platter.png`,
 
     priceRange: '₹₹',
@@ -62,18 +62,6 @@ export function BusinessJsonLd() {
         closes: '22:00',
       },
     ],
-
-    ...(primaryPhone
-      ? {
-          telephone: primaryPhone,
-        }
-      : {}),
-
-    ...(siteConfig.email
-      ? {
-          email: siteConfig.email,
-        }
-      : {}),
 
     ...(siteConfig.mapsUrl
       ? {
