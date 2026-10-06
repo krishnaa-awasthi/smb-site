@@ -9,7 +9,7 @@ import { BusinessJsonLd } from '@/components/seo/BusinessJsonLd';
 
 export default function HomePage() {
   return (
-    <main id="main" className="w-full">
+    <div className="w-full">
       <BusinessJsonLd />
       <Hero />
       <FourHouses />
@@ -17,6 +17,6 @@ export default function HomePage() {
       <OfferBanner />
       <LegacyReveal />
       <HowToOrder />
-    </main>
+    </div>
   );
 }
