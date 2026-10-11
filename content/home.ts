@@ -36,7 +36,7 @@ export const homeContent = {
   hero: {
     headline: 'Sweets, the way they have always been made.', // CONFIRM with client
     subline: 'Sweets, a restaurant, a bakery and namkeen under one roof.',
-    primaryCta: { label: 'Browse sweets', href: '/sweets' },
+    primaryCta: { label: 'Browse products', href: '/sweets' },
     callLabel: 'Call the shop',
     imageHint: 'Hero photo: sweets on a brass thali',
   },
@@ -54,7 +54,7 @@ export const homeContent = {
   },
   legacy: {
     eyebrow: 'Our heritage',
-    title: 'A family shop, still run like one.', // CONFIRM with client
+    title: 'A family shop, still run like one. Since 1997.', // CONFIRM with client
     body: 'Read how Shiv Mishthan Bhandar began, how it has grown, and where it is headed.',
     ctaLabel: 'Read our story',
     ctaHref: '/about',

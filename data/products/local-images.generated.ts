@@ -68,6 +68,10 @@ export const localProductImages: Record<string, LocalProductImage> =
     "src": "/images/products/magdal.png",
     "alt": "Magdal product photo"
   },
+  "malai-peda": {
+    "src": "/images/products/malai-peda.png",
+    "alt": "Malai Peda product photo"
+  },
   "manchurian-dry-gravy": {
     "src": "/images/products/manchurian-dry-gravy.png",
     "alt": "Manchurian Dry Gravy product photo"
@@ -84,6 +88,10 @@ export const localProductImages: Record<string, LocalProductImage> =
     "src": "/images/products/mewa-pinni.png",
     "alt": "Mewa Pinni product photo"
   },
+  "milk-cake": {
+    "src": "/images/products/milk-cake.png",
+    "alt": "Milk Cake product photo"
+  },
   "mix-dosa": {
     "src": "/images/products/mix-dosa.png",
     "alt": "Mix Dosa product photo"
@@ -91,6 +99,10 @@ export const localProductImages: Record<string, LocalProductImage> =
   "moong-dal-laddo": {
     "src": "/images/products/moong-dal-laddo.png",
     "alt": "Moong Dal Laddo product photo"
+  },
+  "motichoor-laddo": {
+    "src": "/images/products/motichoor-laddo.png",
+    "alt": "Motichoor Laddo product photo"
   },
   "noodles": {
     "src": "/images/products/noodles.png",
@@ -139,6 +151,10 @@ export const localProductImages: Record<string, LocalProductImage> =
   "rajkamal": {
     "src": "/images/products/rajkamal.png",
     "alt": "Rajkamal product photo"
+  },
+  "rasgulla": {
+    "src": "/images/products/rasgulla.png",
+    "alt": "Rasgulla product photo"
   },
   "schezwan-noodles": {
     "src": "/images/products/schezwan-noodles.png",
