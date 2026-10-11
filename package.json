@@ -1,14 +1,16 @@
+
 {
   "name": "smb-site",
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "next dev",
-    "build": "next build",
+    "images:generate": "node scripts/generate-product-image-map.mjs",
+    "dev": "pnpm images:generate && next dev",
+    "build": "pnpm images:generate && next build",
     "start": "next start",
-    "lint": "eslint .",
-    "typecheck": "tsc --noEmit",
-    "test": "vitest run",
+    "lint": "pnpm images:generate && eslint .",
+    "typecheck": "pnpm images:generate && tsc --noEmit",
+    "test": "pnpm images:generate && vitest run",
     "format": "prettier --write ."
   },
   "dependencies": {

@@ -1,24 +1,74 @@
+
 import type { CategorySlug, Product } from '@/types';
+
 import { bakery } from './bakery';
 import { namkeen } from './namkeen';
 import { restaurant } from './restaurant';
 import { sweets } from './sweets';
+import { getProductImages } from './images';
 
-/** Every product, grouped by category (each file keeps the shop sheet's order). */
-export const products: Product[] = [...sweets, ...restaurant, ...bakery, ...namkeen];
+/**
+ * Raw catalogue data, grouped in the shop's original sheet order.
+ * Product definitions remain independent of their image files.
+ */
+const rawProducts: Product[] = [
+  ...sweets,
+  ...restaurant,
+  ...bakery,
+  ...namkeen,
+];
 
-export function getProductsByCategory(category: CategorySlug): Product[] {
-  return products.filter((p) => p.category === category);
+/**
+ * Apply image resolution centrally to every product.
+ *
+ * Resolution order is handled by getProductImages():
+ * 1. Matching local product image
+ * 2. Existing manually selected image
+ * 3. Existing category/name fallback
+ *
+ * Product names, prices, variants and catalogue order remain unchanged.
+ */
+export const products: Product[] = rawProducts.map((product) => ({
+  ...product,
+  images: getProductImages(product),
+}));
+
+/** Return products belonging to a category, preserving catalogue order. */
+export function getProductsByCategory(
+  category: CategorySlug,
+): Product[] {
+  return products.filter((product) => product.category === category);
 }
 
-export function getProduct(category: string, slug: string): Product | undefined {
-  return products.find((p) => p.category === category && p.slug === slug);
+/** Look up a product using its category and slug. */
+export function getProduct(
+  category: string,
+  slug: string,
+): Product | undefined {
+  return products.find(
+    (product) =>
+      product.category === category &&
+      product.slug === slug,
+  );
 }
 
-/** Home favourites row: marked items that have a fixed price, by the sheet's order. */
+/**
+ * Home favourites row: only available products with fixed prices.
+ * Ordering behavior is preserved from the existing implementation.
+ */
 export function getBestsellers(limit = 8): Product[] {
   return products
-    .filter((p) => (p.bestseller || p.featured) && p.available && !p.priceOnRequest)
-    .sort((a, b) => Number(!!b.bestseller) - Number(!!a.bestseller) || b.popularity - a.popularity)
+    .filter(
+      (product) =>
+        (product.bestseller || product.featured) &&
+        product.available &&
+        !product.priceOnRequest,
+    )
+    .sort(
+      (a, b) =>
+        Number(!!b.bestseller) -
+          Number(!!a.bestseller) ||
+        b.popularity - a.popularity,
+    )
     .slice(0, limit);
 }

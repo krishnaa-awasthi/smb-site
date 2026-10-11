@@ -2,7 +2,9 @@
 
 import Image from 'next/image';
 import { useLayoutEffect, useRef } from 'react';
+
 import { ArrowUpRight, Phone, Star } from 'lucide-react';
+
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 
@@ -19,11 +21,16 @@ export function Hero() {
   const backgroundRef = useRef<HTMLDivElement>(null);
   const contentRef = useRef<HTMLDivElement>(null);
 
+  // Existing hero images
   const platterRef = useRef<HTMLDivElement>(null);
   const ladooRef = useRef<HTMLDivElement>(null);
   const dosaRef = useRef<HTMLDivElement>(null);
   const cakeRef = useRef<HTMLDivElement>(null);
   const gulabJamunRef = useRef<HTMLDivElement>(null);
+
+  // New hero images
+  const strawberryCakeRef = useRef<HTMLDivElement>(null);
+  const premiumSweetsRef = useRef<HTMLDivElement>(null);
 
   useLayoutEffect(() => {
     const section = sectionRef.current;
@@ -35,6 +42,9 @@ export function Hero() {
     const dosa = dosaRef.current;
     const cake = cakeRef.current;
     const gulabJamun = gulabJamunRef.current;
+
+    const strawberryCake = strawberryCakeRef.current;
+    const premiumSweets = premiumSweetsRef.current;
 
     if (!section || !background || !content) return;
 
@@ -48,8 +58,50 @@ export function Hero() {
        */
 
       const heroItems = Array.from(
-        content.querySelectorAll('[data-hero-item]'),
+        content.querySelectorAll<HTMLElement>('[data-hero-item]'),
       );
+
+      /*
+       * =======================================================
+       * REDUCED MOTION
+       * =======================================================
+       */
+
+      const reduceMotion = window.matchMedia(
+        '(prefers-reduced-motion: reduce)',
+      ).matches;
+
+      if (reduceMotion) {
+        gsap.set(heroItems, {
+          opacity: 1,
+          y: 0,
+        });
+
+        gsap.set(background, {
+          scale: 1,
+        });
+
+        gsap.set(
+          [
+            platter,
+            ladoo,
+            dosa,
+            cake,
+            gulabJamun,
+            strawberryCake,
+            premiumSweets,
+          ].filter(Boolean),
+          {
+            opacity: 1,
+            x: 0,
+            y: 0,
+            scale: 1,
+            rotation: 0,
+          },
+        );
+
+        return;
+      }
 
       gsap.set(heroItems, {
         opacity: 0,
@@ -118,6 +170,32 @@ export function Hero() {
 
       /*
        * =======================================================
+       * NEW IMAGE INITIAL STATE
+       * =======================================================
+       */
+
+      if (strawberryCake) {
+        gsap.set(strawberryCake, {
+          opacity: 0,
+          x: 70,
+          y: -40,
+          scale: 0.82,
+          rotation: 8,
+        });
+      }
+
+      if (premiumSweets) {
+        gsap.set(premiumSweets, {
+          opacity: 0,
+          x: -70,
+          y: 35,
+          scale: 0.82,
+          rotation: -8,
+        });
+      }
+
+      /*
+       * =======================================================
        * INTRO TIMELINE
        * =======================================================
        */
@@ -174,6 +252,7 @@ export function Hero() {
             y: 0,
             rotation: 0,
             duration: 0.8,
+            ease: 'power3.out',
           },
           '-=0.65',
         );
@@ -188,6 +267,7 @@ export function Hero() {
             y: 0,
             rotation: 0,
             duration: 0.8,
+            ease: 'power3.out',
           },
           '-=0.7',
         );
@@ -202,6 +282,7 @@ export function Hero() {
             y: 0,
             rotation: 0,
             duration: 0.8,
+            ease: 'power3.out',
           },
           '-=0.7',
         );
@@ -216,8 +297,47 @@ export function Hero() {
             y: 0,
             rotation: 0,
             duration: 0.8,
+            ease: 'power3.out',
           },
           '-=0.7',
+        );
+      }
+
+      /*
+       * =======================================================
+       * NEW IMAGE REVEAL
+       * =======================================================
+       */
+
+      if (strawberryCake) {
+        intro.to(
+          strawberryCake,
+          {
+            opacity: 1,
+            x: 0,
+            y: 0,
+            scale: 1,
+            rotation: 0,
+            duration: 0.95,
+            ease: 'back.out(1.6)',
+          },
+          '-=0.5',
+        );
+      }
+
+      if (premiumSweets) {
+        intro.to(
+          premiumSweets,
+          {
+            opacity: 1,
+            x: 0,
+            y: 0,
+            scale: 1,
+            rotation: 0,
+            duration: 0.95,
+            ease: 'back.out(1.6)',
+          },
+          '-=0.65',
         );
       }
 
@@ -334,6 +454,82 @@ export function Hero() {
 
       /*
        * =======================================================
+       * NEW IMAGE SCROLL PARALLAX
+       * =======================================================
+       */
+
+      if (strawberryCake) {
+        gsap.to(strawberryCake, {
+          y: -24,
+          rotation: -3,
+          ease: 'none',
+          scrollTrigger: {
+            trigger: section,
+            start: 'top bottom',
+            end: 'bottom top',
+            scrub: 1.2,
+          },
+        });
+      }
+
+      if (premiumSweets) {
+        gsap.to(premiumSweets, {
+          y: 26,
+          rotation: 3,
+          ease: 'none',
+          scrollTrigger: {
+            trigger: section,
+            start: 'top bottom',
+            end: 'bottom top',
+            scrub: 1.2,
+          },
+        });
+      }
+
+      /*
+       * =======================================================
+       * NEW IMAGE FLOATING ANIMATION
+       * =======================================================
+       *
+       * The floating animation is applied to the inner <img>,
+       * while scroll parallax is applied to the outer wrapper.
+       * This prevents the two GSAP animations from fighting
+       * over the same transform.
+       * =======================================================
+       */
+
+      if (strawberryCake) {
+        const image = strawberryCake.querySelector('img');
+
+        if (image) {
+          gsap.to(image, {
+            y: -9,
+            rotation: -1.8,
+            duration: 2.7,
+            ease: 'sine.inOut',
+            repeat: -1,
+            yoyo: true,
+          });
+        }
+      }
+
+      if (premiumSweets) {
+        const image = premiumSweets.querySelector('img');
+
+        if (image) {
+          gsap.to(image, {
+            y: 11,
+            rotation: 1.8,
+            duration: 3.1,
+            ease: 'sine.inOut',
+            repeat: -1,
+            yoyo: true,
+          });
+        }
+      }
+
+      /*
+       * =======================================================
        * REFRESH
        * =======================================================
        */
@@ -349,7 +545,7 @@ export function Hero() {
   return (
     <section
       ref={sectionRef}
-      className="relative isolate h-[calc(100svh-72px)] min-h-[620px] overflow-hidden bg-maroon"
+      className="relative isolate min-h-[620px] h-[calc(100svh-72px)] overflow-hidden bg-maroon"
     >
       {/* =====================================================
           BACKGROUND IMAGE
@@ -359,7 +555,8 @@ export function Hero() {
         ref={backgroundRef}
         className="absolute inset-[-6%] -z-30 bg-cover bg-center bg-no-repeat"
         style={{
-          backgroundImage: "url('/images/hero/smb-store-hero.png')",
+          backgroundImage:
+            "url('/images/hero/smb-store-hero.png')",
         }}
       />
 
@@ -386,16 +583,28 @@ export function Hero() {
           ===================================================== */}
 
       <Container className="relative z-10 flex h-full w-full max-w-none items-center px-5 sm:px-8 lg:px-14 xl:px-20 2xl:px-28">
-
         {/* ===================================================
             LEFT SIDE
             =================================================== */}
 
         <div
           ref={contentRef}
-          className="relative z-30 max-w-[520px] lg:max-w-[550px] xl:max-w-[600px]"
+          className="
+            relative
+            z-30
+            max-w-[520px]
+            pt-14
+            sm:pt-18
+            lg:max-w-[550px]
+            lg:pt-20
+            xl:max-w-[600px]
+            xl:pt-24
+            2xl:pt-28
+          "
         >
-          {/* Eyebrow */}
+          {/* =================================================
+              EYEBROW
+              ================================================= */}
 
           <div
             data-hero-item
@@ -423,7 +632,9 @@ export function Hero() {
             )}
           </div>
 
-          {/* Main headline */}
+          {/* =================================================
+              MAIN HEADLINE
+              ================================================= */}
 
           <h1
             data-hero-item
@@ -432,7 +643,9 @@ export function Hero() {
             {hero.headline}
           </h1>
 
-          {/* Description */}
+          {/* =================================================
+              DESCRIPTION
+              ================================================= */}
 
           <p
             data-hero-item
@@ -441,7 +654,9 @@ export function Hero() {
             {hero.subline}
           </p>
 
-          {/* Actions */}
+          {/* =================================================
+              ACTIONS
+              ================================================= */}
 
           <div
             data-hero-item
@@ -476,7 +691,9 @@ export function Hero() {
             </a>
           </div>
 
-          {/* Brand tagline */}
+          {/* =================================================
+              BRAND TAGLINE
+              ================================================= */}
 
           <p
             data-hero-item
@@ -487,7 +704,7 @@ export function Hero() {
         </div>
 
         {/* ===================================================
-            FIVE-IMAGE PENTAGON
+            IMAGE COMPOSITION
             =================================================== */}
 
         <div
@@ -505,6 +722,57 @@ export function Hero() {
             2xl:right-12
           "
         >
+          {/* =================================================
+              STRAWBERRY CREAM CAKE
+              ================================================= */}
+
+          <div
+            ref={strawberryCakeRef}
+            className="
+              absolute
+              right-[15px]
+              top-[35px]
+              z-10
+              w-[135px]
+              xl:right-[20px]
+              xl:w-[160px]
+            "                                                           
+          >
+            <Image
+              src="/images/hero/hero-strawberry-cake.png"
+              alt="Fresh cream cake topped with strawberries"
+              width={600}
+              height={430}
+              sizes="180px"
+              className="h-auto w-full drop-shadow-[0_22px_30px_rgba(0,0,0,0.42)]"
+            />
+          </div>
+
+          {/* =================================================
+              PREMIUM SWEETS
+              ================================================= */}
+
+          <div
+            ref={premiumSweetsRef}
+            className="
+              absolute
+              bottom-[18px]
+              left-[-95px]
+              z-5
+              w-[155px]
+              xl:left-[-95px]
+              xl:w-[175px]
+            "
+          >
+            <Image
+              src="/images/hero/hero-premium-sweets.png"
+              alt="Assorted Indian sweets on a serving plate"
+              width={600}
+              height={450}
+              sizes="205px"
+              className="h-auto w-full drop-shadow-[0_22px_30px_rgba(0,0,0,0.42)]"
+            />
+          </div>
 
           {/* =================================================
               TOP — MITHAI PLATTER
@@ -588,7 +856,7 @@ export function Hero() {
           </div>
 
           {/* =================================================
-              BOTTOM LEFT — CAKE
+              BOTTOM LEFT — EXISTING CAKE
               ================================================= */}
 
           <div
@@ -641,7 +909,6 @@ export function Hero() {
             />
           </div>
         </div>
-
       </Container>
     </section>
   );

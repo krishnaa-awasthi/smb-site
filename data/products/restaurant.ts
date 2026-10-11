@@ -1,11 +1,7 @@
 import { createCatalogue } from './builders';
 import type { Product } from '@/types';
 
-/**
- * Source: the shop's product sheet, in the sheet's order. One price per menu item.
- * CONFIRM with the client before launch: every item is marked vegetarian (the veg mark is a food-labelling
- * declaration). Change `diet` per item where needed, for example anything made with egg.
- */
+
 const c = createCatalogue('restaurant', 'veg');
 
 export const restaurant: Product[] = [

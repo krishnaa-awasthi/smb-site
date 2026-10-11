@@ -1,5 +1,23 @@
 import type { Product } from '@/types';
 
+type LocalProductImage = {
+  src: string;
+};
+
+type LocalProductImageMap = Record<string, LocalProductImage>;
+
+const localProductImages: LocalProductImageMap = (() => {
+  try {
+    const generated = require('./local-images.generated') as {
+      localProductImages?: LocalProductImageMap;
+    };
+
+    return generated.localProductImages ?? {};
+  } catch {
+    return {};
+  }
+})();
+
 type ProductImage = {
   src: string;
   alt: string;
@@ -656,12 +674,29 @@ function getBakeryImage(name: string): ProductImage {
 export function getProductImage(
   product: Pick<Product, 'name' | 'slug' | 'category'>,
 ): ProductImage {
+  // 1. Prefer the category-specific local photo.
+  const categoryImage =
+    localProductImages[`${product.category}/${product.slug}`];
+
+  // 2. Otherwise, match a photo by the product slug.
+  const localImage =
+    categoryImage ?? localProductImages[product.slug];
+
+  if (localImage) {
+    return {
+      src: localImage.src,
+      alt: `${product.name} product photo`,
+    };
+  }
+
+  // 3. Preserve existing hand-picked image mappings.
   const exactImage = exact[product.slug];
 
   if (exactImage) {
     return exactImage;
   }
 
+  // 4. Preserve your existing category/name fallback system.
   const name = product.name.toLowerCase();
 
   switch (product.category) {
