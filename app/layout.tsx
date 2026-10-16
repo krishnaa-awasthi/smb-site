@@ -18,6 +18,7 @@ import { CartProvider } from '@/components/cart/CartProvider';
 import { CartDrawer } from '@/components/cart/CartDrawer';
 
 
+
 // -----------------------------------------------------------------------------
 // Fonts
 // -----------------------------------------------------------------------------
