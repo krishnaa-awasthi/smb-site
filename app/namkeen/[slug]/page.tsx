@@ -204,7 +204,6 @@ export default async function NamkeenProductPage({
                 </Link>
               </div>
 
-              {/* Product information */}
               <div className="mt-10 space-y-5 border-t border-ink/10 pt-7">
                 <div>
                   <p className="text-xs font-medium uppercase tracking-wider text-ink-soft">

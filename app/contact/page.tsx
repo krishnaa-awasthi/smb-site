@@ -1,4 +1,4 @@
-'use client';
+/*'use client';
 
 import { FormEvent, useState } from 'react';
 import Link from 'next/link';
@@ -55,7 +55,7 @@ export default function ContactPage() {
 
   return (
     <main className="min-h-screen bg-ivory text-ink">
-      {/* Hero */}
+    
       <section className="border-b border-black/5 bg-primary px-5 py-16 text-ivory sm:px-8 sm:py-20 lg:px-12">
         <div className="mx-auto max-w-7xl">
           <p className="mb-3 text-sm font-medium uppercase tracking-[0.2em] text-ivory/70">
@@ -74,10 +74,9 @@ export default function ContactPage() {
         </div>
       </section>
 
-      {/* Contact content */}
       <section className="px-5 py-12 sm:px-8 sm:py-16 lg:px-12 lg:py-20">
         <div className="mx-auto grid max-w-7xl gap-10 lg:grid-cols-[0.9fr_1.1fr]">
-          {/* Contact information */}
+     
           <div>
             <p className="text-sm font-medium uppercase tracking-[0.18em] text-primary/70">
               Contact information
@@ -94,7 +93,7 @@ export default function ContactPage() {
             </p>
 
             <div className="mt-8 space-y-4">
-              {/* Address */}
+              
               <div className="rounded-2xl border border-black/10 bg-white p-5">
                 <div className="flex gap-4">
                   <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-full bg-primary/10 text-primary">
@@ -132,7 +131,6 @@ export default function ContactPage() {
                 </div>
               </div>
 
-              {/* Phone */}
               <div className="rounded-2xl border border-black/10 bg-white p-5">
                 <div className="flex gap-4">
                   <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-full bg-primary/10 text-primary">
@@ -170,7 +168,6 @@ export default function ContactPage() {
                 </div>
               </div>
 
-              {/* WhatsApp */}
               <div className="rounded-2xl border border-black/10 bg-white p-5">
                 <div className="flex gap-4">
                   <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-full bg-primary/10 text-primary">
@@ -218,7 +215,6 @@ export default function ContactPage() {
                 </div>
               </div>
 
-              {/* Hours */}
               <div className="rounded-2xl border border-black/10 bg-white p-5">
                 <div className="flex gap-4">
                   <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-full bg-primary/10 text-primary">
@@ -256,7 +252,6 @@ export default function ContactPage() {
               </div>
             </div>
 
-            {/* WhatsApp CTA */}
             {WHATSAPP_NUMBER && (
               <a
                 href={`https://wa.me/${WHATSAPP_NUMBER.replace(
@@ -271,8 +266,6 @@ export default function ContactPage() {
               </a>
             )}
           </div>
-
-          {/* Contact form */}
           <div className="rounded-3xl border border-black/10 bg-white p-6 shadow-sm sm:p-8 lg:p-10">
             <p className="text-sm font-medium uppercase tracking-[0.18em] text-primary/70">
               Send us a message
@@ -406,7 +399,6 @@ export default function ContactPage() {
         </div>
       </section>
 
-      {/* Map */}
 <section className="border-t border-black/5 bg-white px-5 py-12 sm:px-8 sm:py-16 lg:px-12">
   <div className="mx-auto max-w-7xl">
     <div className="flex flex-col justify-between gap-5 sm:flex-row sm:items-end">
@@ -445,6 +437,66 @@ export default function ContactPage() {
     </div>
   </div>
 </section>
+    </main>
+  );
+}
+
+*/
+
+import Link from 'next/link';
+import { ArrowLeft } from 'lucide-react';
+
+export default function NotFound() {
+  return (
+    <main className="relative flex min-h-screen items-center justify-center overflow-hidden bg-black px-6 text-white">
+      <div className="flex w-full max-w-3xl flex-col items-center text-center">
+        {/* Error code */}
+        <h1
+          className="
+            select-none font-serif
+            text-[clamp(8rem,22vw,17rem)]
+            font-normal leading-[0.9]
+            tracking-tight text-white
+            [text-shadow:0_0_18px_rgba(255,255,255,0.2),0_0_50px_rgba(255,255,255,0.08)]
+          "
+        >
+          404
+        </h1>
+
+        {/* Heading */}
+        <h2 className="mt-8 font-serif text-3xl font-normal tracking-tight sm:text-5xl">
+          Page Not Found
+        </h2>
+
+        {/* Description */}
+        <p className="mt-5 max-w-xl text-sm leading-7 text-white/50 sm:text-base">
+          The page you are looking for doesn’t exist or has been moved.
+        </p>
+
+        {/* Home button */}
+        <Link
+          href="/"
+          className="
+            group mt-10 inline-flex min-h-[56px]
+            items-center justify-center gap-4
+            rounded-full border border-white/80
+            px-8 py-3 text-sm font-medium text-white
+            transition-all duration-300
+            hover:border-white hover:bg-white hover:text-black
+            focus-visible:outline-none
+            focus-visible:ring-2 focus-visible:ring-white
+            focus-visible:ring-offset-4
+            focus-visible:ring-offset-black
+          "
+        >
+          <ArrowLeft
+            size={21}
+            strokeWidth={1.6}
+            className="transition-transform duration-300 group-hover:-translate-x-1"
+          />
+          <span>Go Back Home</span>
+        </Link>
+      </div>
     </main>
   );
 }

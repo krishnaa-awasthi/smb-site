@@ -1,3 +1,4 @@
+/*
 import type { Metadata } from 'next';
 import Image from 'next/image';
 import Link from 'next/link';
@@ -38,13 +39,11 @@ const values = [
 export default function AboutPage() {
   return (
     <main id="main" className="bg-cream text-ink">
-      {/* =========================================================
-          HERO
-      ========================================================= */}
+      
 
       <section className="relative overflow-hidden bg-maroon">
         <div className="relative min-h-[560px] lg:min-h-[680px]">
-          {/* Background image */}
+         
 
           <Image
             src="/images/legacy/sweets-display.jpg"
@@ -55,7 +54,7 @@ export default function AboutPage() {
             className="object-cover object-center"
           />
 
-          {/* Brand overlay */}
+          
 
           <div
             aria-hidden="true"
@@ -74,7 +73,6 @@ export default function AboutPage() {
             "
           />
 
-          {/* Hero content */}
 
           <div
             className="
@@ -191,9 +189,6 @@ export default function AboutPage() {
         </div>
       </section>
 
-      {/* =========================================================
-          INTRODUCTION
-      ========================================================= */}
 
       <section className="bg-cream py-16 lg:py-24">
         <div
@@ -280,9 +275,6 @@ export default function AboutPage() {
         </div>
       </section>
 
-      {/* =========================================================
-          HERITAGE IMAGE
-      ========================================================= */}
 
       <section className="bg-surface-low py-10 lg:py-16">
         <div className="mx-auto w-full max-w-[1320px] px-5 lg:px-12">
@@ -336,9 +328,6 @@ export default function AboutPage() {
         </div>
       </section>
 
-      {/* =========================================================
-          FOUR HOUSES
-      ========================================================= */}
 
       <section className="bg-cream py-16 lg:py-24">
         <div className="mx-auto w-full max-w-[1320px] px-5 lg:px-12">
@@ -495,9 +484,6 @@ export default function AboutPage() {
         </div>
       </section>
 
-      {/* =========================================================
-          VALUES
-      ========================================================= */}
 
       <section className="bg-maroon py-16 lg:py-24">
         <div className="mx-auto w-full max-w-[1320px] px-5 lg:px-12">
@@ -597,10 +583,6 @@ export default function AboutPage() {
           </div>
         </div>
       </section>
-
-      {/* =========================================================
-          VISIT US
-      ========================================================= */}
 
       <section className="bg-cream py-16 lg:py-24">
         <div
@@ -706,7 +688,6 @@ export default function AboutPage() {
             </div>
           </div>
 
-          {/* Location card */}
 
           <div
             className="
@@ -812,6 +793,65 @@ export default function AboutPage() {
           </div>
         </div>
       </section>
+    </main>
+  );
+}
+*/
+
+import Link from 'next/link';
+import { ArrowLeft } from 'lucide-react';
+
+export default function NotFound() {
+  return (
+    <main className="relative flex min-h-screen items-center justify-center overflow-hidden bg-black px-6 text-white">
+      <div className="flex w-full max-w-3xl flex-col items-center text-center">
+        {/* Error code */}
+        <h1
+          className="
+            select-none font-serif
+            text-[clamp(8rem,22vw,17rem)]
+            font-normal leading-[0.9]
+            tracking-tight text-white
+            [text-shadow:0_0_18px_rgba(255,255,255,0.2),0_0_50px_rgba(255,255,255,0.08)]
+          "
+        >
+          404
+        </h1>
+
+        {/* Heading */}
+        <h2 className="mt-8 font-serif text-3xl font-normal tracking-tight sm:text-5xl">
+          Page Not Found
+        </h2>
+
+        {/* Description */}
+        <p className="mt-5 max-w-xl text-sm leading-7 text-white/50 sm:text-base">
+          The page you are looking for doesn’t exist or has been moved.
+        </p>
+
+        {/* Home button */}
+        <Link
+          href="/"
+          className="
+            group mt-10 inline-flex min-h-[56px]
+            items-center justify-center gap-4
+            rounded-full border border-white/80
+            px-8 py-3 text-sm font-medium text-white
+            transition-all duration-300
+            hover:border-white hover:bg-white hover:text-black
+            focus-visible:outline-none
+            focus-visible:ring-2 focus-visible:ring-white
+            focus-visible:ring-offset-4
+            focus-visible:ring-offset-black
+          "
+        >
+          <ArrowLeft
+            size={21}
+            strokeWidth={1.6}
+            className="transition-transform duration-300 group-hover:-translate-x-1"
+          />
+          <span>Go Back Home</span>
+        </Link>
+      </div>
     </main>
   );
 }

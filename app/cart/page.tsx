@@ -1,4 +1,4 @@
-'use client';
+/*'use client';
 
 import Image from 'next/image';
 import Link from 'next/link';
@@ -58,9 +58,7 @@ export default function CartPage() {
   const [errorMessage, setErrorMessage] =
     useState('');
 
-  /*
-   * Resolve cart lines against the current product catalogue.
-   */
+  
   const resolvedLines = useMemo(() => {
     return lines
       .map((line) => {
@@ -96,9 +94,6 @@ export default function CartPage() {
       );
   }, [lines]);
 
-  /*
-   * Wait until localStorage hydration has completed.
-   */
   if (!isHydrated) {
     return (
       <main className="min-h-screen bg-ivory">
@@ -113,9 +108,6 @@ export default function CartPage() {
     );
   }
 
-  /*
-   * Empty cart.
-   */
   if (resolvedLines.length === 0) {
     return (
       <main className="min-h-screen bg-ivory">
@@ -258,11 +250,6 @@ export default function CartPage() {
 
       const result = buildWhatsAppUrl(message);
 
-      /*
-       * If the generated URL is too long,
-       * copy the raw message and open the
-       * normal WhatsApp chat.
-       */
       if (result.tooLong) {
         try {
           await navigator.clipboard.writeText(
@@ -306,10 +293,6 @@ export default function CartPage() {
         return;
       }
 
-      /*
-       * Open WhatsApp with the order already
-       * written in the message box.
-       */
       const popup = window.open(
         result.url,
         '_blank',
@@ -339,7 +322,7 @@ export default function CartPage() {
 
   return (
     <main className="min-h-screen bg-ivory">
-      {/* Header */}
+      
 
       <section className="border-b border-ink/10">
         <div className="mx-auto max-w-6xl px-5 py-8 sm:px-6 sm:py-10">
@@ -365,9 +348,6 @@ export default function CartPage() {
 
       <div className="mx-auto max-w-6xl px-5 py-8 sm:px-6 lg:py-12">
         <div className="grid gap-8 lg:grid-cols-[1.2fr_0.8fr]">
-          {/* =================================================
-              LEFT — CART ITEMS
-              ================================================= */}
 
           <section>
             <div className="rounded-ctl border border-ink/10 bg-white">
@@ -393,7 +373,7 @@ export default function CartPage() {
                     className="p-5 sm:p-6"
                   >
                     <div className="flex gap-4">
-                      {/* Image */}
+                     
 
                       <div className="relative h-24 w-24 shrink-0 overflow-hidden rounded-ctl bg-primary/5 sm:h-28 sm:w-28">
                         {line.product.images[0] ? (
@@ -418,7 +398,6 @@ export default function CartPage() {
                         )}
                       </div>
 
-                      {/* Details */}
 
                       <div className="min-w-0 flex-1">
                         <div className="flex items-start justify-between gap-4">
@@ -461,7 +440,7 @@ export default function CartPage() {
                         </div>
 
                         <div className="mt-4 flex items-center justify-between">
-                          {/* Quantity */}
+                          
 
                           <div className="flex h-9 items-center overflow-hidden rounded-ctl border border-ink/15">
                             <button
@@ -503,7 +482,6 @@ export default function CartPage() {
                             </button>
                           </div>
 
-                          {/* Line total */}
 
                           <p className="text-sm font-semibold text-ink">
                             {formatINR(
@@ -535,10 +513,6 @@ export default function CartPage() {
             </div>
           </section>
 
-          {/* =================================================
-              RIGHT — CHECKOUT
-              ================================================= */}
-
           <section>
             <div className="sticky top-24 rounded-ctl border border-ink/10 bg-white p-5 sm:p-6">
               <h2 className="font-display text-2xl text-ink">
@@ -551,7 +525,7 @@ export default function CartPage() {
                 by the shop on WhatsApp.
               </p>
 
-              {/* Name */}
+            
 
               <div className="mt-6">
                 <label
@@ -580,7 +554,6 @@ export default function CartPage() {
                 )}
               </div>
 
-              {/* Order type */}
 
               <div className="mt-5">
                 <p className="text-sm font-medium text-ink">
@@ -641,7 +614,6 @@ export default function CartPage() {
                 )}
               </div>
 
-              {/* Address */}
 
               {orderType === 'delivery' && (
                 <div className="mt-5">
@@ -675,7 +647,7 @@ export default function CartPage() {
                 </div>
               )}
 
-              {/* Preferred time */}
+            
 
               <div className="mt-5">
                 <label
@@ -704,7 +676,6 @@ export default function CartPage() {
                 )}
               </div>
 
-              {/* Notes */}
 
               <div className="mt-5">
                 <label
@@ -733,7 +704,6 @@ export default function CartPage() {
                 )}
               </div>
 
-              {/* Summary */}
 
               <div className="mt-6 border-t border-ink/10 pt-5">
                 <div className="flex items-center justify-between">
@@ -753,7 +723,6 @@ export default function CartPage() {
                 </p>
               </div>
 
-              {/* Error */}
 
               {errorMessage && (
                 <div className="mt-4 rounded-ctl bg-red-50 px-4 py-3 text-xs leading-5 text-red-700">
@@ -761,7 +730,6 @@ export default function CartPage() {
                 </div>
               )}
 
-              {/* Success */}
 
               {success && (
                 <div className="mt-4 rounded-ctl bg-primary/5 px-4 py-4">
@@ -787,7 +755,6 @@ export default function CartPage() {
                 </div>
               )}
 
-              {/* WhatsApp button */}
 
               {!success && (
                 <button
@@ -812,7 +779,6 @@ export default function CartPage() {
                 charged online.
               </p>
 
-              {/* Back */}
 
               <Link
                 href="/sweets"
@@ -823,6 +789,64 @@ export default function CartPage() {
             </div>
           </section>
         </div>
+      </div>
+    </main>
+  );
+}*/
+
+import Link from 'next/link';
+import { ArrowLeft } from 'lucide-react';
+
+export default function NotFound() {
+  return (
+    <main className="relative flex min-h-screen items-center justify-center overflow-hidden bg-black px-6 text-white">
+      <div className="flex w-full max-w-3xl flex-col items-center text-center">
+        {/* Error code */}
+        <h1
+          className="
+            select-none font-serif
+            text-[clamp(8rem,22vw,17rem)]
+            font-normal leading-[0.9]
+            tracking-tight text-white
+            [text-shadow:0_0_18px_rgba(255,255,255,0.2),0_0_50px_rgba(255,255,255,0.08)]
+          "
+        >
+          404
+        </h1>
+
+        {/* Heading */}
+        <h2 className="mt-8 font-serif text-3xl font-normal tracking-tight sm:text-5xl">
+          Page Not Found
+        </h2>
+
+        {/* Description */}
+        <p className="mt-5 max-w-xl text-sm leading-7 text-white/50 sm:text-base">
+          The page you are looking for doesn’t exist or has been moved.
+        </p>
+
+        {/* Home button */}
+        <Link
+          href="/"
+          className="
+            group mt-10 inline-flex min-h-[56px]
+            items-center justify-center gap-4
+            rounded-full border border-white/80
+            px-8 py-3 text-sm font-medium text-white
+            transition-all duration-300
+            hover:border-white hover:bg-white hover:text-black
+            focus-visible:outline-none
+            focus-visible:ring-2 focus-visible:ring-white
+            focus-visible:ring-offset-4
+            focus-visible:ring-offset-black
+          "
+        >
+          <ArrowLeft
+            size={21}
+            strokeWidth={1.6}
+            className="transition-transform duration-300 group-hover:-translate-x-1"
+          />
+          <span>Go Back Home</span>
+        </Link>
       </div>
     </main>
   );
