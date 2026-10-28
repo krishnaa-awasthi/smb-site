@@ -1,7 +1,7 @@
 
 'use client';
 
-import { useEffect, useLayoutEffect, useRef } from 'react';
+import { useLayoutEffect, useRef } from 'react';
 
 import {
   ArrowUpRight,
@@ -20,55 +20,16 @@ const { hero } = homeContent;
 
 const hasYear = !siteConfig.establishedYear.startsWith('{{');
 
-const heroVideoUrl =
-  process.env.NEXT_PUBLIC_HERO_VIDEO_URL?.trim() ?? '';
-
 const heroPoster = '/images/hero/smb-store-hero.png';
 
 export function Hero() {
   const sectionRef = useRef<HTMLElement>(null);
   const backgroundRef = useRef<HTMLDivElement>(null);
-  const videoRef = useRef<HTMLVideoElement>(null);
   const contentRef = useRef<HTMLDivElement>(null);
 
   /*
-   * Respect the user's reduced-motion preference.
-   * When enabled, pause the video and use the poster image instead.
-   */
-  useEffect(() => {
-    const video = videoRef.current;
-
-    if (!video) return;
-
-    const motionQuery = window.matchMedia(
-      '(prefers-reduced-motion: reduce)',
-    );
-
-    const syncPlayback = () => {
-      if (motionQuery.matches) {
-        video.pause();
-        return;
-      }
-
-      const playback = video.play();
-      playback?.catch(() => {
-        // Keep the poster visible if playback is unavailable.
-      });
-    };
-
-    syncPlayback();
-
-    motionQuery.addEventListener('change', syncPlayback);
-
-    return () => {
-      motionQuery.removeEventListener('change', syncPlayback);
-      video.pause();
-    };
-  }, []);
-
-  /*
-   * GSAP content reveal and background parallax.
-   * All former right-side image refs and animations are removed.
+   * GSAP intro animation and background/content parallax.
+   * Uses the existing image only — no video playback.
    */
   useLayoutEffect(() => {
     const section = sectionRef.current;
@@ -83,15 +44,14 @@ export function Hero() {
 
     const ctx = gsap.context(() => {
       const heroItems = Array.from(
-        content.querySelectorAll<HTMLElement>(
-          '[data-hero-item]',
-        ),
+        content.querySelectorAll<HTMLElement>('[data-hero-item]'),
       );
 
       const reduceMotion = window.matchMedia(
         '(prefers-reduced-motion: reduce)',
       ).matches;
 
+      // Keep content visible when reduced motion is preferred.
       if (reduceMotion) {
         gsap.set(heroItems, {
           opacity: 1,
@@ -106,7 +66,7 @@ export function Hero() {
         return;
       }
 
-      // Initial state
+      // Initial animation states.
       gsap.set(heroItems, {
         opacity: 0,
         y: 30,
@@ -117,7 +77,7 @@ export function Hero() {
         yPercent: 0,
       });
 
-      // Intro animation
+      // Image zoom-out and staggered content reveal.
       const intro = gsap.timeline({
         defaults: {
           ease: 'power3.out',
@@ -141,7 +101,7 @@ export function Hero() {
           '-=0.9',
         );
 
-      // Video/background parallax
+      // Subtle background parallax while scrolling.
       gsap.to(background, {
         yPercent: 3,
         scale: 1.03,
@@ -154,7 +114,7 @@ export function Hero() {
         },
       });
 
-      // Subtle content parallax
+      // Subtle content parallax.
       gsap.to(content, {
         yPercent: -3,
         ease: 'none',
@@ -192,12 +152,10 @@ export function Hero() {
         bg-maroon
       "
     >
-      {/* ================================================
-          VIDEO BACKGROUND
-          ================================================ */}
-
+      {/* Static hero image background */}
       <div
         ref={backgroundRef}
+        aria-hidden="true"
         className="
           absolute
           inset-[-6%]
@@ -210,45 +168,23 @@ export function Hero() {
         style={{
           backgroundImage: `url('${heroPoster}')`,
         }}
-      >
-        {heroVideoUrl && (
-          <video
-            ref={videoRef}
-            aria-hidden="true"
-            autoPlay
-            muted
-            loop
-            playsInline
-            preload="metadata"
-            poster={heroPoster}
-            tabIndex={-1}
-            className="
-              absolute
-              inset-0
-              h-full
-              w-full
-              object-cover
-              motion-reduce:hidden
-            "
-          >
-            <source src={heroVideoUrl} />
-          </video>
-        )}
-      </div>
+      />
 
-      {/* ================================================
-          MAROON OVERLAY
-          Keep existing opacity unchanged.
-          ================================================ */}
-
-      <div className="absolute inset-0 -z-20 bg-maroon/10" />
-
-      {/* ================================================
-          LEFT READABILITY GRADIENT
-          ================================================ */}
-
+      {/* Subtle maroon tint */}
       <div
         className="
+          pointer-events-none
+          absolute
+          inset-0
+          -z-20
+          bg-maroon/10
+        "
+      />
+
+      {/* Left-side gradient for text readability */}
+      <div
+        className="
+          pointer-events-none
           absolute
           inset-0
           -z-10
@@ -259,12 +195,10 @@ export function Hero() {
         "
       />
 
-      {/* ================================================
-          BOTTOM TRANSITION
-          ================================================ */}
-
+      {/* Bottom gradient for a smoother transition */}
       <div
         className="
+          pointer-events-none
           absolute
           inset-x-0
           bottom-0
@@ -276,10 +210,7 @@ export function Hero() {
         "
       />
 
-      {/* ================================================
-          HERO CONTENT
-          ================================================ */}
-
+      {/* Hero content */}
       <Container
         className="
           relative
@@ -312,7 +243,6 @@ export function Hero() {
           "
         >
           {/* Eyebrow */}
-
           <div
             data-hero-item
             className="mb-6 flex flex-wrap items-center gap-3"
@@ -371,7 +301,6 @@ export function Hero() {
           </div>
 
           {/* Headline */}
-
           <h1
             data-hero-item
             className="
@@ -388,7 +317,6 @@ export function Hero() {
           </h1>
 
           {/* Description */}
-
           <p
             data-hero-item
             className="
@@ -403,8 +331,7 @@ export function Hero() {
             {hero.subline}
           </p>
 
-          {/* Actions */}
-
+          {/* Action buttons */}
           <div
             data-hero-item
             className="mt-9 flex flex-wrap items-center gap-5"
@@ -490,10 +417,6 @@ export function Hero() {
               {hero.callLabel}
             </a>
           </div>
-
-          {/* Brand tagline */}
-
-          
         </div>
       </Container>
     </section>
